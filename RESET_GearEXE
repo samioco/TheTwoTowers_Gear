@@ -1,0 +1,124 @@
+#CLASS 0
+$CLASS = "Tools|Gear|EXE"
+// -------------- LOOKUP ------------------------
+//param: item_RoomShort_name
+#AL Lookup {
+$item=%lower(%0)
+$armourList=""
+#FORALL %lower(@Gear_Armour) {#IF (%pos($item,%lower(%i))) {#ADDI $armourList %lower(%item(%i,1))}}
+#IF ($armourList) {
+  DisplayArmourList %dups($armourList)
+}
+$weaponList=""
+#FORALL %lower(@Gear_Weapons) {#IF (%pos($item,%lower(%i))) {#ADDI $weaponList %lower(%item(%i,1))}}
+#IF ($weaponList) {
+  DisplayWeaponList %dups($weaponList)
+}
+#IF ((!$armourList) && (!$weaponList)) {#ECHO No matching items for: $item}
+} $CLASS
+// -------------- LOOKUP ------------------------
+
+// ------------ Gear Armour Swap  ------------
+#AL GearSwap {
+$searchItem=%lower(%0)
+$itemName=""
+$itemSlot=""
+#CR
+#SW (%ismember($searchItem,@Gear_ArmourNames)) {
+  $itemName=$searchItem
+  Gear_CompareArmour $itemName
+  $itemSlot = %lower(%item(@Gear_LookUpArmour_Slots,1))
+  #IF (@Gear_CompareArmour_Result) {Gear_SwapArmour $itemSlot}
+} (%ismember($searchItem,@Gear_WeaponNames)) {
+  $itemName=$searchItem
+  Gear_CompareWeapon $itemName
+  #IF (@Gear_CompareWeapon_Result) {GEAR_SwapWeapon}
+} {
+  #IF (!$itemName) {
+    #ECHO Item not in ArmourNames DB or WeaponNames DB. Searching entire Armour DB for: $searchItem
+    #FORALL %lower(@Gear_Armour) {#IF (%pos($searchItem,%lower(%i))) {$itemName = %lower(%item(%i,1));#BREAK}}
+  }
+  #IF ($itemName) {
+    Gear_CompareArmour $itemName
+    $itemSlot = %lower(%item(@Gear_LookUpArmour_Slots,1))
+    #IF (@Gear_CompareArmour_Result) {Gear_SwapArmour $itemSlot}
+  } {
+    #ECHO Item not in Armour DB. Searching entire Weapons DB for: $searchItem
+    //#FORALL %lower(@Gear_Weapons) {#IF (%pos($item,%lower(%i))) {#ADDI $weaponList %lower(%item(%i,1))}}
+    #FORALL %lower(@Gear_Weapons) {
+      #IF (%pos($searchItem,%lower(%i))) {$itemName = %lower(%item(%i,1));#BREAK}
+    }
+  }
+
+  #IF ($itemName) {
+    #ECHO Found item: $itemName
+    Gear_CompareWeapon $itemName
+    #IF (@Gear_Weapon_Compare_Result) {GEAR_SwapWeapon}
+  } {#ECHO Search Item not found: $searchItem}
+}
+} $CLASS
+
+#AL GearSwapUnload {
+$item=%lower(%0)
+GearSwap $item
+#IF (@Gear_CompareArmour_Result) {ActionAdd "Grinder_Unload @Gear_Armour_Old_ID"
+} {"Grinder_Unload @Gear_CompareArmour_ID"}
+} $CLASS
+
+#AL ListAllArmour {
+Gear_DisplayArmourHeaderline
+#FORALL @Gear_ArmourNames {
+  Gear_LookupArmour %i
+  Gear_DisplayArmourItem %i
+}
+ShowLine 110
+} $CLASS
+
+#AL ListAllWeps {
+Gear_DisplayWeaponHeaderline
+#FORALL @Gear_WeaponNames {
+  Gear_LookupWeapon %i
+  Gear_DisplayWeaponItem %i
+}
+ShowLine 110
+} $CLASS
+
+
+//Receive 2 item list [itemScore, itemName]
+//Return sorted list
+#AL SortGearList {
+$list=%list(%0)
+$sortedList=""
+$i=1
+$flag=0
+$curItem=""
+$curItemScore=0
+$nextItem=""
+$nextItemScore=0
+#WHILE ($i<%numitems($list)) {
+  $curItem=%item($list,$i)
+  $curItemScore=%item($curItem,2)
+  $nextItem=%item($list,$i+1)
+  $nextItemScore=%item($nextItem,2)
+  #IF ($curItemScore > $nextItemScore) {
+    $sortedList = %additem($nextItem,$sortedList)
+    $sortedList = %additem($curItem,$sortedList)
+    #ADD $i 1
+    $flag=1
+  } {
+    $sortedList = %additem($curItem,$sortedList)
+  }
+  #ADD $i 1
+}
+#IF ($i<=%numitems($list)) {$sortedList = %additem(%item($list,$i),$sortedList)}
+//#ECHO current sorted: $sortedList
+#IF ($flag) {
+  SortGearList $sortedList
+} {
+  #VAR GearSortedList {$sortedList} {} VAR
+}
+} $CLASS
+
+
+
+#CLASS 0
