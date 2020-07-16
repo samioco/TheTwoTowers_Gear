@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearDBWeapons#CLASS 0#AL RESET_GearDBWeapons {#CLASS 0
 
 #VAR GEAR_Weapons {} {} VAR
 
@@ -326,4 +326,4 @@
 #VAR Gear_Whips {} {} VAR
 #FORALL @Gear_Weapons {#IF (%item(%i,3)="whip") {#ADDI Gear_Whips %item(%i,1)}}
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

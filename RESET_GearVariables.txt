@@ -1,5 +1,5 @@
-#CLASS 0
-DeclareGearVariables
+//RESET_GearVariables#CLASS 0#AL RESET_GearVariables {#CLASS 0
+RESET_GearDeclareVariables
 
 #VAR Wep {} {} VAR
 #VAR Dag {} {} VAR
@@ -202,4 +202,4 @@ DeclareGearVariables
 
 
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

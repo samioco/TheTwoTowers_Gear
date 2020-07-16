@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearArmourEXE#CLASS 0#AL RESET_GearArmourEXE {#CLASS 0
 $CLASS = "Tools|Gear|EXE"
 
 
@@ -210,4 +210,4 @@ Gear_LookUpArmour $item
 // ------------ Gear_Armour_SetCompareItem ------------
 
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

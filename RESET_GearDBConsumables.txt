@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearDBConsumables#CLASS 0#AL RESET_GearDBConsumables {#CLASS 0
 //name:
 //id:
 //uses:
@@ -26,3 +26,4 @@
 //roast dog (35g): 40hp each, 80hp full, 9 in pack
 //sugared cockroach (25g): probably 100+
 #CLASS 0
+} _Gear#CLASS 0

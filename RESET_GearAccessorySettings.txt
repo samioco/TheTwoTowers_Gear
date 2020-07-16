@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearAccessorySettings#CLASS 0#AL RESET_GearAccessorySettings {#CLASS 0
 $CLASS = "Tools|Gear|EXE"
 
 #AL Gear_AssignAccessorie {
@@ -69,4 +69,4 @@ Gear_UnAssignArmour
 
 #TR Gear_ScoredRing_Drain {It can't be worn that quickly.  Wait a bit.} {GoldOff;WW} $CLASS
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

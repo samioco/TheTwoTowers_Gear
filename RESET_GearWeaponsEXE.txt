@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearWeaponsEXE#CLASS 0#AL RESET_GearWeaponsEXE {#CLASS 0
 $CLASS = "Tools|Gear|EXE"
 
 #AL Gear_AssignDagger {
@@ -198,4 +198,4 @@ Gear_CompareWeapon $wep
 #IF (@Gear_CompareWeapon_Result) {Gear_SwapWeapon}
 } $CLASS
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

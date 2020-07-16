@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearMounts#CLASS 0#AL RESET_GearMounts {#CLASS 0
 $CLASS = "Tools|Gear|Mounts"
 
 #TR SellWagon {You sell your wagon} {
@@ -37,7 +37,7 @@ $mywag=%lower(%concat(@MyNamePossessive," ",@Gear_WagonType))
  #VAR Gear_Panniers {1} {} VAR
  #ECHO Panniers packed!
  } $CLASS
-
+ 
 //#TR PackedMount {@MyNamePossessive *{@Mounts} *~[packed~]} {
 //#VAR Mount {1} {} VAR
 //#SW (@MyFaction="ER") {#VAR Gear_Saddlebags {1} {} VAR} {#VAR Gear_Panniers {1} {} VAR}
@@ -49,7 +49,7 @@ $mywag=%lower(%concat(@MyNamePossessive," ",@Gear_WagonType))
 #VAR Gear_Panniers {} {} VAR
 #ECHO Unpacked Saddlebags/Panniers
 } $CLASS
-
+ 
 
 
 #TR SetPacktag {You set your packtag * ({"pair of panniers|pair of saddlebags|wagon|cart|wain"}).} {
@@ -234,4 +234,4 @@ SysMsg MyMount updated: %proper(@MyMount)
 SysMsg MyMount updated: %proper(@MyMount)
 } $CLASS
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

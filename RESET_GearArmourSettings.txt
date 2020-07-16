@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearArmourSettings#CLASS 0#AL RESET_GearArmourSettings {#CLASS 0
 $CLASS = "Tools|Gear|Settings"
 
 #TR Armour_Verbose {^Protecting%sArmour} {
@@ -57,4 +57,4 @@ Gear_LookUpArmour $item
 Gear_UnAssignArmour
 } $CLASS
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

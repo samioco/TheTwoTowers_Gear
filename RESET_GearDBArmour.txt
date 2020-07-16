@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearDBArmour#CLASS 0#AL RESET_GearDBArmour {#CLASS 0
 #VAR GEAR_Armour {} {} VAR
 #ADDI GEAR_Armour "The dragon-helm of dor-lomin|dragon-helm|head|50|60|210|10000"
 #ADDI GEAR_Armour "A shining mithril coif|mithril coif|head|40|50|60|1200"
@@ -374,4 +374,4 @@
   #DELI %concat("Gear_",%i) ""
 }
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearDisplayWeapons#CLASS 0#AL RESET_GearDisplayWeapons {#CLASS 0
 $CLASS = "Tools|Gear|EXE"
 
 
@@ -130,3 +130,4 @@ $display=%concat($display,@Gear_LookUpWeapon_Type)
 } $CLASS
 
 #CLASS 0
+} _Gear#CLASS 0

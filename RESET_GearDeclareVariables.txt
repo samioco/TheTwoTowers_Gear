@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearDeclareVariables#CLASS 0#AL RESET_GearDeclareVariables {#CLASS 0
 #VAR ArmourSlots {} {} VAR
 #ADDI ArmourSlots "arms"
 #ADDI ArmourSlots "back"
@@ -225,3 +225,4 @@
 
 
 #CLASS 0
+} _Gear#CLASS 0

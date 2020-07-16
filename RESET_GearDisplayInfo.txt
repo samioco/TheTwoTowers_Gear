@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearDisplayInfo#CLASS 0#AL RESET_GearDisplayInfo {#CLASS 0
 $CLASS = "Tools|Gear|EXE"
 #AL MSTAT {
 SysMsg Mount: @Mount, Mounted: @Mounted, Hitched, @Hitched, Monstrous: @MonstrousWarg
@@ -31,7 +31,7 @@ $container_types = "wagon|panniers|saddlebags|pack|cloak|tornbag|peltstring"
 //Cut string at 10 chars
 $display="CONTAINERS"
 $display=%copy($display,1,10)
-//Add trailing spaces up to 10 chars
+//Add trailing spaces up to 10 chars 
 #IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
 $display=%concat($display,": ",$items)
 #IF ($items) {SysMsg $display}
@@ -65,7 +65,7 @@ $items=""
 //Cut string at 10 chars
 $display="RINGS"
 $display=%copy($display,1,10)
-//Add trailing spaces up to 10 chars
+//Add trailing spaces up to 10 chars 
 #IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
 $display=%concat($display,": ",$items)
 #IF ($items) {SysMsg $display}
@@ -85,7 +85,7 @@ $dark_items="necklace|ring|cloak|pendant"
 //Cut string at 10 chars
 $display="DARKNESS"
 $display=%copy($display,1,10)
-//Add trailing spaces up to 10 chars
+//Add trailing spaces up to 10 chars 
 #IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
 $display=%concat($display,": ",$items)
 #IF ($items) {SysMsg $display}
@@ -101,7 +101,7 @@ $items=""
 //Cut string at 10 chars
 $display="BOOSTS"
 $display=%copy($display,1,10)
-//Add trailing spaces up to 10 chars
+//Add trailing spaces up to 10 chars 
 #IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
 $display=%concat($display,": ",$items)
 #IF ($items) {SysMsg $display}
@@ -156,4 +156,4 @@ INFO Jerky: @Jerky
   }
 } $CLASS
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

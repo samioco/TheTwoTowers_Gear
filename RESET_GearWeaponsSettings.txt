@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearWeaponsSettings#CLASS 0#AL RESET_GearWeaponsSettings {#CLASS 0
 $CLASS = "Tools|Gear|Settings"
 
 #TR WeaponWielded {~*({@Gear_WeaponNames})*~(wielded~)} {
@@ -142,4 +142,4 @@ $damage=75
 #VAR MyWep_Damage {$damage} {} VAR
 #ECHO One Handed Battle Axe power updated. Level: $level ~| Hit: $hit ~| Damage: $damage
 } $CLASS
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0

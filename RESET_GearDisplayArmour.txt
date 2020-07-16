@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearDisplayArmour#CLASS 0#AL RESET_GearDisplayArmour {#CLASS 0
 $CLASS = "Tools|Gear|EXE"
 
 
@@ -227,3 +227,4 @@ ShowLine 110
 
 
 #CLASS 0
+} _Gear#CLASS 0

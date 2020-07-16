@@ -1,7 +1,7 @@
-#CLASS 0
+//RESET_GearEXE#CLASS 0#AL RESET_GearEXE {#CLASS 0
 $CLASS = "Tools|Gear|EXE"
 // -------------- LOOKUP ------------------------
-//param: item_RoomShort_name
+//param: itemRoomShort_name
 #AL Lookup {
 $item=%lower(%0)
 $armourList=""
@@ -48,8 +48,8 @@ $itemSlot=""
     #FORALL %lower(@Gear_Weapons) {
       #IF (%pos($searchItem,%lower(%i))) {$itemName = %lower(%item(%i,1));#BREAK}
     }
-  }
-
+  }  
+  
   #IF ($itemName) {
     #ECHO Found item: $itemName
     Gear_CompareWeapon $itemName
@@ -61,8 +61,8 @@ $itemSlot=""
 #AL GearSwapUnload {
 $item=%lower(%0)
 GearSwap $item
-#IF (@Gear_CompareArmour_Result) {ActionAdd "Grinder_Unload @Gear_Armour_Old_ID"
-} {"Grinder_Unload @Gear_CompareArmour_ID"}
+#IF (@Gear_CompareArmour_Result) {ActionAdd "GrinderUnload @Gear_Armour_Old_ID"
+} {"GrinderUnload @Gear_CompareArmour_ID"}
 } $CLASS
 
 #AL ListAllArmour {
@@ -122,3 +122,4 @@ $nextItemScore=0
 
 
 #CLASS 0
+} _Gear#CLASS 0

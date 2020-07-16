@@ -1,4 +1,4 @@
-#CLASS 0
+//RESET_GearDBHints#CLASS 0#AL RESET_GearDBHints {#CLASS 0
 
 #VAR GEAR_Keys {} {} VAR
 #ADDI GEAR_Keys "A well-used bronze key"
@@ -132,4 +132,4 @@
 #ADDI GEAR_SpecialHints "pair of dirty boots|Unpolished Panther Boots"
 #ADDI GEAR_SpecialHints "This strange, violet-gray mushroom looks pretty suspicious.  It|100EP Mushroom"
 
-#CLASS 0
+#CLASS 0} _Gear#CLASS 0
