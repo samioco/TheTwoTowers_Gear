@@ -1,0 +1,72 @@
+#CLASS 0
+$CLASS = "Tools|Gear|EXE"
+
+#AL Gear_AssignAccessorie {
+//%1: accessory, %2: toggle
+$param=0;#IF (%2!=0) {$param=1}
+#IF (%1="A mighty war horn") {#VAR Gear_WarHorn {$param} {} VAR}
+#IF (%1="A pair of dark grey gloves") {#VAR Gear_GreyGloves {$param} {} VAR}
+#IF (%1="A pair of polished panther-hide boots") {#VAR Gear_PantherBoots {$param} {} VAR}
+#IF (%ismember(%1,"An elf-skin bota|A silver flask|A black flask")) {#VAR Gear_Heal {draught} {} VAR}
+#IF (%1="A mixed potion") {#VAR Gear_Mixie {$param} {} VAR}
+#IF (%1="Pasha's war horn") {#VAR Gear_PashaHorn {$param} {} VAR}
+#IF (%1="A keyring containing") {#VAR Gear_Keyring {$param} {} VAR}
+#IF (%1="A large black cloak") {#VAR Gear_LongBlackCloak {$param} {} VAR}
+#IF (%1="A shimmering silver-quartz ring") {#VAR Gear_ShimmeringRing {$param} {} VAR}
+#IF (%1="A gold scored ring") {#VAR Gear_ScoredRing {$param} {} VAR}
+#IF (%1="A cobalt ring") {#VAR Gear_CobaltRing {$param} {} VAR}
+#IF (%pos("pelt",%1)) {#VAR Gear_PeltString {$param} {} VAR}
+#IF (%1="A stamped staying-permit") {#VAR Gear_LinhirPermit {$param} {} VAR}
+#IF (%1="A golden amulet") {#VAR Gear_GoldenAmulet {$param} {} VAR}
+#IF (%ismember(%1,"A small black-bladed dagger|black dagger")) {#VAR Gear_EPDag {$param} {} VAR}
+#IF (%1="A wickedly curved knife") {#VAR Gear_EPKnife {$param} {} VAR}
+#IF (%1="The bands of slaying") {#VAR Gear_BandsOfSlaying {$param} {} VAR}
+#IF (%1="A simple-looking necklace") {#VAR Gear_DarkNecklace {$param} {} VAR}
+#IF (%1="A crimson cloak") {#VAR Gear_DarkCloak {$param} {} VAR}
+#IF (%1="An ominous dark ring") {#VAR Gear_DarkRing {$param} {} VAR}
+#IF (%1="An onyx pendant") {#VAR Gear_DarkPendant {$param} {} VAR}
+#IF (%1="A small greenish ring") {#VAR Gear_RangerRing {$param} {} VAR}
+#IF (%1="A torn merchant bag") {#VAR Gear_Tornbag {$param} {} VAR}
+#IF (%ismember(%1,@Gear_Crystals)) {#VAR Gear_Crystal {$param} {} VAR}
+#IF (%ismember(%1,@Gear_Packs)) {#VAR Gear_Pack {$param} {} VAR}
+#IF (%ismember(%1,@Gear_Cloaks)) {#VAR Gear_Cloak {$param} {} VAR}
+} $CLASS
+
+
+$CLASS = "Tools|Gear|Settings"
+
+#TR GEAR_Accessories {~*({@Gear_Accessories_All})} {Gear_AssignAccessorie %proper(%1) 1} $CLASS
+#TR GEAR_Accessories_Worn {({@Gear_Accessories_All})*~(worn~)} {Gear_AssignAccessorie %proper(%1) 1} $CLASS
+#TR GEAR_Accessories_Wear {You wear*({@Gear_Accessories_All})} {Gear_AssignAccessorie %proper(%1) 1} $CLASS
+#TR GEAR_Accessories_ArmourVerbose {{"body|back|jewelry|ring|other"}{"1|2|"}%s*({@Gear_Accessories_All})} {Gear_AssignAccessorie %proper(%1) 1} $CLASS
+#TR GEAR_Accessories_Tag1 {({@Gear_Accessories_All})%s: Ok} {Gear_AssignAccessorie %proper(%1) 1} $CLASS
+#TR GEAR_Accessories_Tag2 {({@Gear_Accessories_All})%s: Already tagged} {Gear_AssignAccessorie %proper(%1) 1} $CLASS
+#TR GEAR_Accessories_Tag3 {You have tagged *({@Gear_Accessories_All}) as unsellable.} {Gear_AssignAccessorie %proper(%1) 1} $CLASS
+#TR GEAR_Accessories_Tag4 {You have already tagged *({@Gear_Accessories_All}) as unsellable.} {Gear_AssignAccessorie %proper(%1) 1} $CLASS
+
+#TR GEAR_Removed_TornBag {You remove a torn merchant bag.} {#VAR Gear_Tornbag {} {} VAR} $CLASS
+#TR GEAR_Removed_Cloak {You remove ({@Gear_Cloaks})} {#VAR Gear_Cloak {} {} VAR} $CLASS
+#TR GEAR_Removed_Pack {You remove ({@Gear_Packs})} {#VAR Gear_Pack {} {} VAR} $CLASS
+#TR GEAR_EPDagger {~*A small black-bladed dagger} {#VAR EPDag {1} {} VAR} $CLASS
+#TR Gear_ShimmeringRing {~*A shimmering silver-quartz ring} {#VAR Gear_ShimmeringRing {1} {} VAR} $CLASS
+#TR Gear_CobaltRing {~*A cobalt ring} {#VAR Gear_CobaltRing {1} {} VAR} $CLASS
+#TR Gear_WarHorn {({@Messages_WarHorn})} {#CW high,white;#CAP INFO;#IF (%ismember(%1,@Messages_WarHorn_Worn)) {#VAR Gear_WarHorn {1} {} VAR} {#VAR Gear_WarHorn {} {} VAR}} $CLASS
+#TR GEAR_LinhirPermit {({@Messages_LinhirPermit})} {#IF (%ismember(%1,@Messages_LinhirPermit_Receive)) {#VAR Gear_LinhirPermit {1} {} VAR} {#VAR Gear_LinhirPermit {} {} VAR}} $CLASS
+#TR GEAR_MixedPotion {({@Messages_MixedPotion})} {#CW high,white;#IF (%ismember(%1,@Messages_MixedPotion_Conceal)) {#VAR Gear_Mixie {1} {} VAR} {#VAR Gear_Mixie {} {} VAR}} $CLASS
+#TR GEAR_PashaWarHorn {You hang pasha's war horn around your neck} {#VAR Gear_PashaHorn {1} {} VAR} $CLASS
+
+#TR GEAR_GreyGloves_Wear {The black hatred of an ancient assassin consumes you, eternal bloodlust} {
+$item=%lower("A pair of dark grey gloves")
+Gear_LookupArmour $item
+Gear_AssignArmour
+} $CLASS
+
+#TR GEAR_GreyGloves_Wear_Remove {The black malice fades away, the aura of a bloodthirsty slayer replaced} {
+$item=%lower("A pair of dark grey gloves")
+Gear_LookupArmour $item
+Gear_UnAssignArmour
+} $CLASS
+
+#TR Gear_ScoredRing_Drain {It can't be worn that quickly.  Wait a bit.} {GoldOff;WW} $CLASS
+
+#CLASS 0
