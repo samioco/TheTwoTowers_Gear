@@ -1,0 +1,17 @@
+$FileName=%concat("Gear_Armour.txt")
+#FILE 1 $FileName
+#ERASE 1
+#FILE 1 $FileName
+#FORALL @Gear_Armour {
+    #WRITE 1 %i
+}
+#CLOSE 1
+
+$FileName=%concat("Gear_Weapons.txt")
+#FILE 1 $FileName
+#ERASE 1
+#FILE 1 $FileName
+#FORALL @Gear_Weapons {
+    #WRITE 1 %i
+}
+#CLOSE 1
