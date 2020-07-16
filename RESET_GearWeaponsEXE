@@ -1,0 +1,201 @@
+#CLASS 0
+$CLASS = "Tools|Gear|EXE"
+
+#AL Gear_AssignDagger {
+$dag=%lower(%0)
+#SW (%pos("twilight dagger",$dag)) {DAG "twilight dagger"
+} (%pos("slender dagger",$dag)) {DAG "slender dagger"
+} (%pos("long hunter's knife",$dag)) {DAG "long hunter's knife"
+} (%pos("well-made dagger",$dag)) {DAG "well-made dagger"
+} (%pos("finely-crafted dagger",$dag)) {DAG "finely-crafted dagger"
+} (%pos("blued dagger",$dag)) {DAG "blued dagger"
+} (%pos("black dagger",$dag)) {DAG "black dagger"
+} (%pos("curved dagger",$dag)) {DAG "curved dagger"
+} (%pos("steel dagger",$dag)) {DAG "steel dagger"
+} (%pos("runed dagger",$dag)) {DAG "runed dagger"
+} (%pos("mithril dagger",$dag)) {DAG "mithril dagger"}
+} $CLASS
+
+//Need param1 item
+//Output: Gear_LookUpWeapon VARS
+#AL Gear_LookupWeapon {
+$wep=%lower(%0)
+$record=""
+$itemScore=""
+//#ECHO Searching DB for: $wep
+#FORALL %lower(@Gear_Weapons) {#IF (%pos($wep,%item(%lower(%i),1))) {$record=%lower(%i);#BREAK}}
+//#ECHO Found record: $record
+$name=%item($record,1)
+$id=%item($record,2)
+$type=%item($record,3)
+$hands=%item($record,4)
+
+$hit=%float(%item($record,5))
+$damage=%float(%item($record,6))
+#IF (%lower(@MyWep_Name)="an ancient one handed battle axe") {
+  $hit=%float(@MyWep_Hit)
+  $damage=%float(@MyWep_Damage)
+}
+$weight=%float(%item($record,7))
+$durability=%item($record,8)
+$notes=%item($record,9)
+
+#VAR Gear_LookUpWeapon_Record {$record} {} VAR
+#VAR Gear_LookUpWeapon_Name {$name} {} VAR
+#VAR Gear_LookUpWeapon_ID {$id} {} VAR
+#VAR Gear_LookUpWeapon_Type {$type} {} VAR
+#VAR Gear_LookUpWeapon_Hands {$hands} {} VAR
+#VAR Gear_LookUpWeapon_Hit {$hit} {} VAR
+#VAR Gear_LookUpWeapon_Damage {$damage} {} VAR
+#VAR Gear_LookUpWeapon_Weight {$weight} {} VAR
+#VAR Gear_LookUpWeapon_Durability {$durability} {} VAR
+#VAR Gear_LookUpWeapon_Notes {$notes} {} VAR
+
+
+#MATH Gear_LookUpWeapon_Score (($hit + $damage) - (($weight / 25) * 3))
+#VAR Gear_LookUpWeapon_Score {%format(1,%float(@Gear_LookUpWeapon_Score))} {} VAR
+
+//$score=$hit+$damage
+//$weightScore=%float(($weight / 25) * 3)
+//#MATH $score %float($score - $weightScore)
+//$score=%format(1,%float($score))
+//#ECHO score: $score
+//#VAR Gear_LookUpWeapon_Score {$score} {} VAR
+} $CLASS
+
+#AL Gear_AssignWeapon {
+#VAR MyWep_Name {@Gear_LookUpWeapon_Name} {} VAR
+#VAR MyWep_ID {@Gear_LookUpWeapon_ID} {} VAR
+#VAR MyWep_Type {@Gear_LookUpWeapon_Type} {} VAR
+#VAR MyWep_Hands {@Gear_LookUpWeapon_Hands} {} VAR
+#VAR MyWep_Hit {@Gear_LookUpWeapon_Hit} {} VAR
+#VAR MyWep_Damage {@Gear_LookUpWeapon_Damage} {} VAR
+#VAR MyWep_Weight {@Gear_LookUpWeapon_Weight} {} VAR
+#VAR MyWep_Durability {@Gear_LookUpWeapon_Durability} {} VAR
+#VAR MyWep_Score {@Gear_LookUpWeapon_Score} {} VAR
+#VAR MyWep_Notes {@Gear_LookUpWeapon_Notes} {} VAR
+WEP @Gear_LookUpWeapon_Type
+} $CLASS
+
+#AL Gear_UnAssignWeapon {
+#VAR MyWep_Name {} {} VAR
+#VAR MyWep_ID {} {} VAR
+#VAR MyWep_Type {} {} VAR
+#VAR MyWep_Hands {} {} VAR
+#VAR MyWep_Hit {} {} VAR
+#VAR MyWep_Damage {} {} VAR
+#VAR MyWep_Weight {} {} VAR
+#VAR MyWep_Durability {} {} VAR
+#VAR MyWep_Score {} {} VAR
+#VAR MyWep_Notes {} {} VAR
+} $CLASS
+
+#AL WepClear {Gear_Weapon_Unassign} $CLASS
+
+#AL Gear_Weapon_SetCompareItem {$item=%0
+#ECHO Looking up: $item
+Gear_LookUpWeapon $item
+#VAR Gear_CompareWeapon_Name {@Gear_LookUpWeapon_Name} {} VAR
+#VAR Gear_CompareWeapon_ID {@Gear_LookUpWeapon_ID} {} VAR
+#VAR Gear_CompareWeapon_Type {@Gear_LookUpWeapon_Type} {} VAR
+#VAR Gear_CompareWeapon_Hands {@Gear_LookUpWeapon_Hands} {} VAR
+#VAR Gear_CompareWeapon_Hit {@Gear_LookUpWeapon_Hit} {} VAR
+#VAR Gear_CompareWeapon_Damage {@Gear_LookUpWeapon_Damage} {} VAR
+#VAR Gear_CompareWeapon_Weight {@Gear_LookUpWeapon_Weight} {} VAR
+#VAR Gear_CompareWeapon_Durability {@Gear_LookUpWeapon_Durability} {} VAR
+#VAR Gear_CompareWeapon_Score {@Gear_LookUpWeapon_Score} {} VAR
+#VAR Gear_CompareWeapon_Notes {@Gear_LookUpWeapon_Notes} {} VAR
+} $CLASS
+
+
+// ------------ Gear Armour Compare ------------
+//Param: item short name
+#AL WepComp {
+$item=%lower(%0)
+Gear_CompareWeapon $item
+} $CLASS
+// ------------ Gear Armour Compare ------------
+
+//Need: param1 item
+#AL Gear_CompareWeapon {
+$wep=%lower(%0)
+Gear_Weapon_SetCompareItem $wep
+#VAR Gear_CompareWeapon_Result {0} {} VAR
+#IF (@Gear_CompareWeapon_Score>=@MyWep_Score) {#VAR Gear_CompareWeapon_Result {1} {} VAR}
+Gear_WeaponCompare_DisplayResults
+} $CLASS
+
+//Assumes previous call: Gear_CompareWeapon <weaponRoomShort>
+#AL Gear_SwapWeapon {
+//#VAR Gear_Weapon_Old_Record {} {} VAR
+#VAR Gear_Weapon_Old_Name {@MyWep_Name} {} VAR
+#VAR Gear_Weapon_Old_ID {@MyWep_ID} {} VAR
+#VAR Gear_Weapon_Old_Type {@MyWep_Type} {} VAR
+#VAR Gear_Weapon_Old_Hands {@MyWep_Hands} {} VAR
+#VAR Gear_Weapon_Old_Hit {@MyWep_Hit} {} VAR
+#VAR Gear_Weapon_Old_Damage {@MyWep_Damage} {} VAR
+#VAR Gear_Weapon_Old_Weight {@MyWep_Weight} {} VAR
+#VAR Gear_Weapon_Old_Durability {@MyWep_Durability} {} VAR
+#VAR Gear_Weapon_Old_Score {@MyWep_Score} {} VAR
+#VAR Gear_Weapon_Old_Notes {@MyWep_Notes} {} VAR
+#IF (@Gear_CompareWeapon_Result) {
+$MyName=%lower(@MyName)
+$MyNamePossessive=%lower(@MyNamePossessive)
+$exe=""
+$sheath="sheath"
+#IF (@MyWep_ID=@Gear_LookUpWeapon_ID) {
+  $exe=%concat("untag ",@MyWep_ID," 2,drop ",@MyWep_ID," 2")
+} {
+  $exe=%concat("untag ",@MyWep_ID,",drop ",@MyWep_ID)
+}
+
+#SW (@MyWep_Type="sword") {$sheath="sheath"
+} (%ismember(@MyWep_Type,"mace|flail|hammer|axe")) {$sheath="belt"
+} (@MyWep_Type="staff") {$sheath="sling"
+}
+#IF ((%len($exe) && (%rightback($exe,1)!=","))) {$exe=%concat($exe,",")}
+$exe=%concat($exe,",untag ",@MyWep_ID," in ",$sheath,",drop ",@MyWep_ID," from ",$sheath)
+#IF (%pos(",",$exe)) {$exe=%concat("do ",$exe)}
+#EXE {$exe}
+
+$exe=""
+#IF (@MyWep_ID=@Gear_LookUpWeapon_ID) {
+  $exe=%concat("do get ",@Gear_LookUpWeapon_ID," 2,tag ",@Gear_LookUpWeapon_ID,",store ",@Gear_LookUpWeapon_ID)
+} {$exe=%concat("do get ",@Gear_LookUpWeapon_ID,",tag ",@Gear_LookUpWeapon_ID,",store ",@Gear_LookUpWeapon_ID)}
+#EXE {$exe}
+
+$exe=""
+#IF (@MyWep_ID) {
+  #IF (@Gear_Wagon) {
+    #IF ((%len($exe) && (%rightback($exe,1)!=","))) {$exe=%concat($exe,",")}
+    $exe=%concat($exe,"get ",@MyWep_ID," into ",@MyWagon)
+  }
+  #IF (@Gear_Saddlebags) {
+    #IF ((%len($exe) && (%rightback($exe,1)!=","))) {$exe=%concat($exe,",")}
+    $exe=%concat($exe,"get ",@MyWep_ID," into saddlebags")
+  }
+  #IF (@Gear_Panniers) {
+    #IF ((%len($exe) && (%rightback($exe,1)!=","))) {$exe=%concat($exe,",")}
+    $exe=%concat($exe,"get ",@MyWep_ID," into panniers")
+  }
+  #IF (@Gear_Pack) {
+    #IF ((%len($exe) && (%rightback($exe,1)!=","))) {$exe=%concat($exe,",")}
+    $exe=%concat($exe,"get ",@MyWep_ID," into pack")
+  }
+  $exe=%concat($exe,",get ",@MyWep_ID)
+  #IF (%pos(",",$exe)) {$exe=%concat("do ",$exe)}
+  #EXE {$exe}
+}
+WEP @Gear_LookUpWeapon_Type
+}
+} $CLASS
+
+
+#AL WepSwap {
+$wep=%lower(%0)
+#ECHO Comparing cur: @MyWep_id to new: $wep
+Gear_CompareWeapon $wep
+#IF (@Gear_CompareWeapon_Result) {Gear_SwapWeapon}
+} $CLASS
+
+#CLASS 0

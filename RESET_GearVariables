@@ -1,0 +1,205 @@
+#CLASS 0
+DeclareGearVariables
+
+#VAR Wep {} {} VAR
+#VAR Dag {} {} VAR
+#VAR Wielding {} {} VAR
+
+
+
+#FORALL @ArmourSlots {
+  #VAR %concat("My",%proper(%i)) {} {} VAR
+  #FORALL @ArmourStats {
+    #VAR %concat("My",%proper(%i),"_",%j) {} {} VAR
+  }
+}
+
+//Current weapon stats
+#VAR %concat("MyWep") {} {} VAR
+#FORALL @WeaponStats {
+  #VAR %concat("MyWep","_",%i) {} {} VAR
+}
+
+#FORALL @RESET_GeneralGear {#VAR %i {} {} VAR}
+#FORALL @RESET_Gear {#VAR %concat("Gear_",%i) {} {} VAR}
+
+#CLASS 0
+
+//Vars used for storing my worn gear stats
+#VAR Gear_List {} {} VAR
+#VAR Gear_Armour_List {} {} VAR
+#FORALL @ArmourStats {
+  #VAR %concat("Gear_Armour_",%i) {} {} VAR
+}
+
+//Vars used for performing stat compares (current gear vs new gear)
+//These vars will be stored from lookups
+#VAR Gear_Armour_Compare_Result {} {} VAR
+#FORALL @ArmourStats {
+  #VAR %concat("Gear_CompareArmour_",%i) {} {} VAR
+}
+
+
+//Vars used for performing record lookups (not to be used for compare)
+#FORALL @ArmourStats {
+  #VAR %concat("Gear_LookupArmour_",%i) {} {} VAR
+}
+
+//Vars used for storing old item stats on a gear swap
+#FORALL @ArmourStats {
+  #VAR %concat("Gear_Armour_Old_",%i) {} {} VAR
+}
+
+
+//Vars used for calculating total armour stats
+#FORALL @ArmourStats {
+  #VAR %concat("Gear_Armour_Total_",%i) {} {} VAR
+}
+
+
+
+//Lookup records for reference
+#FORALL @WeaponStats {
+  #VAR %concat("Gear_LookupWeapon_",%i) {} {} VAR
+}
+
+#VAR Gear_Weapon_Compare_Result {} {} VAR
+#FORALL @WeaponStats {
+  #VAR %concat("Gear_CompareWeapon_",%i) {} {} VAR
+}
+
+
+//Vars used for storing old item stats on a gear swap
+#FORALL @WeaponStats {
+  #VAR %concat("Gear_Weapon_Old_",%i) {} {} VAR
+}
+
+#VAR Messages_Mounted {} {} VAR
+#ADDI Messages_Mounted "You mount"
+#ADDI Messages_Mounted "You are riding"
+#ADDI Messages_Mounted "You cannot do that while mounted!"
+#ADDI Messages_Mounted "ridden by you"
+#ADDI Messages_Mounted "You can't reach that while riding."
+
+#VAR Messages_UnMounted {} {} VAR
+#ADDI Messages_UnMounted "You cannot ride your mount there."
+#ADDI Messages_UnMounted "You dismount"
+#ADDI Messages_UnMounted "Your mount won't follow you there."
+#ADDI Messages_UnMounted "You drop the reins and stop leading"
+#ADDI Messages_UnMounted "You are not mounted!"
+//#ADDI Messages_UnMounted "being led by you"
+
+#VAR Messages_Dismount {} {} VAR
+#ADDI Messages_Dismount "You cannot ride your mount there."
+#ADDI Messages_Dismount "You dismount"
+#ADDI Messages_Dismount "Your mount won't follow you there."
+#ADDI Messages_Dismount "You drop the reins and stop leading"
+
+#VAR Messages_Hitched {} {} VAR
+#ADDI Messages_Hitched "Already hitched."
+#ADDI Messages_Hitched "You secure %1 to the hitching post."
+#ADDI Messages_Hitched "You secure the mount to the hitching post."
+
+#VAR Messages_UnHitched {} {} VAR
+#ADDI Messages_UnHitched "You release the mount from the hitching post."
+#ADDI Messages_UnHitched "You release %1 from the hitching post."
+#ADDI Messages_UnHitched "That animal is not hitched."
+
+#VAR Messages_ReinsDrop {} {} VAR
+#ADDI Messages_ReinsDrop "You drop the reins and stop leading"
+#ADDI Messages_ReinsDrop "You cannot ride your mount there."
+
+#VAR Messages_ReinsPickup {} {} VAR
+#ADDI Messages_ReinsPickup "You grab the reins and lead"
+
+#VAR Messages_CantTrample {} {} VAR
+#ADDI Messages_CantTrample  "You must be riding to trample anyone."
+
+#VAR Mounts {} {} VAR
+#ADDI Mounts "monstrous warg"
+#ADDI Mounts "warg"
+#ADDI Mounts "horse"
+#ADDI Mounts "stallion"
+#ADDI Mounts "mare"
+#ADDI Mounts "roan horse"
+#ADDI Mounts "young mumak"
+#ADDI Mounts "war mumak"
+#ADDI Mounts "mumak"
+#ADDI Mounts "camel"
+
+#VAR Mount_Colors {} {} VAR
+#ADDI Mount_Colors "tan"
+#ADDI Mount_Colors "black"
+#ADDI Mount_Colors "white"
+
+#VAR Mount {} {} VAR
+#VAR Mounted {} {} VAR
+#VAR MonstrousWarg {} {} VAR
+#VAR MyMon {} {} VAR
+#VAR CurMon {} {} VAR
+#VAR Hitched {} {} VAR
+#VAR Dismount {} {} VAR
+#VAR ReinsDropped {} {} VAR
+#VAR ReinsPickup {} {} VAR
+#VAR MountType {} {} VAR
+#VAR Gear_WagonType {"wagon"} {} VAR
+
+#VAR Messages_OneHandedBattleAxe {} {} VAR
+#ADDI Messages_OneHandedBattleAxe "The gem is dull grey in color."
+//Shadowspawn Alignment: <=-1000
+#ADDI Messages_OneHandedBattleAxe "The gem is a dull black color."
+#ADDI Messages_OneHandedBattleAxe "The gem is black and seems to radiate a cold darkness."
+#ADDI Messages_OneHandedBattleAxe "All light surrounding the gem seems to be absorbed."
+#ADDI Messages_OneHandedBattleAxe "The gem is black and seems alive with evil energy."
+
+//Demonic Alignment: <=-750
+#ADDI Messages_OneHandedBattleAxe "The gem is dull red in color."
+#ADDI Messages_OneHandedBattleAxe "The red gem throbs slowly with an internal light."
+#ADDI Messages_OneHandedBattleAxe "The gem shines with a wicked red light."
+#ADDI Messages_OneHandedBattleAxe "The gem's red glow leaves an evil feeling about the axe."
+
+//Villainous Alignment: <=-500
+#ADDI Messages_OneHandedBattleAxe "The gem is a dark orange color."
+#ADDI Messages_OneHandedBattleAxe "A muted orange light comes from the gem."
+#ADDI Messages_OneHandedBattleAxe "Black shadows flash across the glowing orange gem."
+#ADDI Messages_OneHandedBattleAxe "A fiery orange light radiats from within the gem."
+
+//Immoral Alignment: <=-125
+#ADDI Messages_OneHandedBattleAxe "The gem is a dark blue, almost black."
+#ADDI Messages_OneHandedBattleAxe "A purple glow surrounds the dark blue gem."
+#ADDI Messages_OneHandedBattleAxe "The soft purple glow of the gem leaves you feeling uneasy."
+#ADDI Messages_OneHandedBattleAxe "An eerie purple flame burns around the gem."
+
+//Impartial: -125 to 125
+#ADDI Messages_OneHandedBattleAxe "The multi-colored gem looks dull and lifeless."
+#ADDI Messages_OneHandedBattleAxe "The gem's multiple colors swirl lazilly within it."
+#ADDI Messages_OneHandedBattleAxe "The gem releases a soft glow of constantly changing colors."
+#ADDI Messages_OneHandedBattleAxe "The colors within the gem swirl and mix rapidly in a hypnotic manner."
+
+//Moral: <=400
+#ADDI Messages_OneHandedBattleAxe "The gem is opaque and light blue in color."
+#ADDI Messages_OneHandedBattleAxe "The gem's heart seems to be a swirling blue mist."
+#ADDI Messages_OneHandedBattleAxe "A bright blue light fills the gem."
+#ADDI Messages_OneHandedBattleAxe "The gem shines pure and blue, reminding you of a clear sky."
+
+//Heroic: <=749
+#ADDI Messages_OneHandedBattleAxe "The gem is an ugly yellow color."
+#ADDI Messages_OneHandedBattleAxe "The gem is pale yellow in color."
+#ADDI Messages_OneHandedBattleAxe "The gem shines with a golden metallic hue."
+#ADDI Messages_OneHandedBattleAxe "A golden glow shines forth from the gem's heart."
+
+//Angelic: <=999
+#ADDI Messages_OneHandedBattleAxe "The gem is a dull white color."
+#ADDI Messages_OneHandedBattleAxe "The gem is bright white and shimmers as light hits it."
+#ADDI Messages_OneHandedBattleAxe "A soft white light fills the gem."
+#ADDI Messages_OneHandedBattleAxe "The gem is releasing a pure, comforting white light."
+
+//Hand of Eru: >=1000
+#ADDI Messages_OneHandedBattleAxe "The gem has a silvery, metallic gleam to it."
+#ADDI Messages_OneHandedBattleAxe "A dim silver light shines from deep within the gem."
+#ADDI Messages_OneHandedBattleAxe "A bright silver aura surrounds the gem."
+#ADDI Messages_OneHandedBattleAxe "The gem is immersed in a powerful silver radiance."
+
+
+
+#CLASS 0
