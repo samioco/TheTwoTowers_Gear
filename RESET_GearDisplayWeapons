@@ -1,0 +1,132 @@
+#CLASS 0
+$CLASS = "Tools|Gear|EXE"
+
+
+#AL WepStat {
+Gear_DisplayWeaponHeaderline
+Gear_DisplayWeaponItem @MyWep_Name
+ShowLine 110
+} $CLASS
+
+
+//Param: list of weapon names
+//Purpose: calcuate item scores and sort list by scores
+//Return: 2-item list: [itemScore, itemName]
+#AL DisplayWeaponList {
+$list=%0
+#IF (!$list) {$list=@Gear_WeaponNames}
+$items=""
+#FORALL $list {
+  Gear_LookUpWeapon %i
+  #ADDI $items %concat(~",@Gear_LookUpWeapon_Name,"|",@Gear_LookUpWeapon_Score,~")
+}
+SortGearList $items
+Gear_DisplayWeaponHeaderline
+#FORALL @GearSortedList {
+  Gear_LookupWeapon %lower(%item(%i,1))
+  Gear_DisplayWeaponItem %lower(%item(%i,1))
+}
+ShowLine 110
+} $CLASS
+
+
+#AL Gear_WeaponCompare_DisplayResults {
+Gear_DisplayWeaponHeaderline
+Gear_DisplayWeaponItem @MyWep_Name
+Gear_DisplayWeaponItem @Gear_CompareWeapon_Name
+ShowLine 100
+#IF (@Gear_CompareWeapon_Result) {#ECHO New Item is Better/Newer: @Gear_LookUpWeapon_Name
+} {#ECHO Keep Current Item: @MyWep_Name}
+ShowLine 100
+} $CLASS
+
+
+#AL Gear_DisplayWeaponHeaderline {
+#CR
+ShowLine 110
+$display="Weapon"
+#LOOP (35 - %len($display)) {$display=%concat($display," ")}
+$display=%concat($display,%left("ID",33))
+#LOOP (60 - %len($display)) {$display=%concat($display," ")}
+$item = %left("Hit",4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+#LOOP (65 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left("Dmg",4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (70 - %len($display)) {$display=%concat($display," ")}
+$item = %left("Wgt",4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (75 - %len($display)) {$display=%concat($display," ")}
+$item = %left("Dura",4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (85 - %len($display)) {$display=%concat($display," ")}
+$item = %left("#H",4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (90 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left("Score",6)
+#LOOP 7-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (98 - %len($display)) {$display=%concat($display," ")}
+$display=%concat($display,"Type")
+#ECHO $display
+ShowLine 110
+} $CLASS
+
+#AL Gear_DisplayWeaponItem {
+$item=%lower(@MyWep_Name)
+#IF (%0) {$item=%lower(%0)}
+Gear_LookUpWeapon $item
+$display=%left(%concat(@Gear_LookupWeapon_Name),33)
+#LOOP (35 - %len($display)) {$display=%concat($display," ")}
+$display=%concat($display,%left(@Gear_LookUpWeapon_ID,23))
+#LOOP (60 - %len($display)) {$display=%concat($display," ")}
+$item = %left(%string(%int(@Gear_LookUpWeapon_Hit)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (65 - %len($display)) {$display=%concat($display," ")}
+$item = %left(%string(%int(@Gear_LookUpWeapon_Damage)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (70 - %len($display)) {$display=%concat($display," ")}
+$item = %left(%string(%int(@Gear_LookUpWeapon_Weight)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (75 - %len($display)) {$display=%concat($display," ")}
+$item = %left(%string(%int(@Gear_LookUpWeapon_Durability)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+
+#LOOP (85 - %len($display)) {$display=%concat($display," ")}
+$item = %concat(%left(%string(%int(@Gear_LookUpWeapon_Hands)),2),"H")
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+//$display=%concat($display,%left(%concat(@Gear_LookUpWeapon_Hands,"H"),3))
+#LOOP (90 - %len($display)) {$display=%concat($display," ")}
+$item = %left(%string(%format(1,%float(@Gear_LookUpWeapon_Score))),6)
+#LOOP 7-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (98 - %len($display)) {$display=%concat($display," ")}
+//$display=%concat($display,@Gear_LookUpWeapon_Notes)
+$display=%concat($display,@Gear_LookUpWeapon_Type)
+#ECHO $display
+} $CLASS
+
+#CLASS 0
