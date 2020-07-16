@@ -1,0 +1,227 @@
+#CLASS 0
+#VAR ArmourSlots {} {} VAR
+#ADDI ArmourSlots "arms"
+#ADDI ArmourSlots "back"
+#ADDI ArmourSlots "belt"
+#ADDI ArmourSlots "body"
+#ADDI ArmourSlots "chest"
+#ADDI ArmourSlots "gambeson"
+#ADDI ArmourSlots "face"
+#ADDI ArmourSlots "feet"
+#ADDI ArmourSlots "hands"
+#ADDI ArmourSlots "head"
+#ADDI ArmourSlots "jewelry1"
+#ADDI ArmourSlots "jewelry2"
+#ADDI ArmourSlots "legs"
+#ADDI ArmourSlots "ring1"
+#ADDI ArmourSlots "ring2"
+#ADDI ArmourSlots "shield"
+#ADDI ArmourSlots "shoulder"
+#ADDI ArmourSlots "shoulder1"
+#ADDI ArmourSlots "shoulder2"
+#ADDI ArmourSlots "waist"
+
+#VAR ArmourStats {} {} VAR
+#ADDI ArmourStats "Record"
+#ADDI ArmourStats "Name"
+#ADDI ArmourStats "ID"
+#ADDI ArmourStats "Slots"
+#ADDI ArmourStats "Deflect"
+#ADDI ArmourStats "Absorb"
+#ADDI ArmourStats "Weight"
+#ADDI ArmourStats "Capacity"
+#ADDI ArmourStats "Bulk"
+#ADDI ArmourStats "DR"
+#ADDI ArmourStats "Score"
+#ADDI ArmourStats "Notes"
+
+#VAR WeaponStats {} {} VAR
+#ADDI WeaponStats "Record"
+#ADDI WeaponStats "Name"
+#ADDI WeaponStats "ID"
+#ADDI WeaponStats "Type"
+#ADDI WeaponStats "Hands"
+#ADDI WeaponStats "Hit"
+#ADDI WeaponStats "Damage"
+#ADDI WeaponStats "Weight"
+#ADDI WeaponStats "Durability"
+#ADDI WeaponStats "Score"
+#ADDI WeaponStats "Notes"
+
+#VAR RESET_GeneralGear {} {} VAR
+#ADDI RESET_GeneralGear "MyContainers"
+#ADDI RESET_GeneralGear "MeatPies"
+#ADDI RESET_GeneralGear "PelPies"
+#ADDI RESET_GeneralGear "Jerky"
+
+#VAR RESET_Gear {} {} VAR
+#ADDI RESET_Gear "Packtag"
+#ADDI RESET_Gear "Pack"
+#ADDI RESET_Gear "Cloak"
+#ADDI RESET_Gear "Tornbag"
+#ADDI RESET_Gear "PeltString"
+#ADDI RESET_Gear "Wagon"
+#ADDI RESET_Gear "Panniers"
+#ADDI RESET_Gear "Saddlebags"
+#ADDI RESET_Gear "WagonType"
+#ADDI RESET_Gear "WagonSpace"
+#ADDI RESET_Gear "PartyWagons"
+#ADDI RESET_Gear "LongBlackCloak"
+#ADDI RESET_Gear "GreyGloves"
+#ADDI RESET_Gear "PantherBoots"
+#ADDI RESET_Gear "BandsOfSlaying"
+#ADDI RESET_Gear "Keyring"
+#ADDI RESET_Gear "WarHorn"
+#ADDI RESET_Gear "PashaHorn"
+#ADDI RESET_Gear "Mixie"
+#ADDI RESET_Gear "ShimmeringRing"
+#ADDI RESET_Gear "ScoredRing"
+#ADDI RESET_Gear "CobaltRing"
+#ADDI RESET_Gear "RangerRing"
+#ADDI RESET_Gear "Dark1"
+#ADDI RESET_Gear "Dark2"
+#ADDI RESET_Gear "DarkCloak"
+#ADDI RESET_Gear "DarkNecklace"
+#ADDI RESET_Gear "DarkRing"
+#ADDI RESET_Gear "DarkPendant"
+#ADDI RESET_Gear "EPDag"
+#ADDI RESET_Gear "EPKnife"
+#ADDI RESET_Gear "Crystal"
+#ADDI RESET_Gear "LinhirPermit"
+#ADDI RESET_Gear "GoldenAmulet"
+
+#VAR Gear_Heal {"draught"} {} VAR
+
+
+#VAR GEAR_Accessories {} {} VAR
+#ADDI GEAR_Accessories "A simple-looking necklace"
+#ADDI GEAR_Accessories "A crimson cloak"
+#ADDI GEAR_Accessories "An ominous dark ring"
+#ADDI GEAR_Accessories "An onyx pendant"
+#ADDI GEAR_Accessories "A pelt string"
+#ADDI GEAR_Accessories "A small pelt-string"
+#ADDI GEAR_Accessories "A pair of dark grey gloves"
+#ADDI GEAR_Accessories "A silver flask"
+#ADDI GEAR_Accessories "A black flask"
+#ADDI GEAR_Accessories "An elf-skin bota"
+#ADDI GEAR_Accessories "A mixed potion"
+#ADDI GEAR_Accessories "A mighty war horn"
+#ADDI GEAR_Accessories "Pasha's war horn"
+#ADDI GEAR_Accessories "A keyring containing"
+#ADDI GEAR_Accessories "A large black cloak"
+#ADDI GEAR_Accessories "A shimmering silver-quartz ring"
+#ADDI GEAR_Accessories "A silver-quartz ring"
+#ADDI GEAR_Accessories "A stamped staying-permit"
+#ADDI GEAR_Accessories "A gold scored ring"
+#ADDI GEAR_Accessories "A cobalt ring"
+#ADDI GEAR_Accessories "A golden amulet"
+#ADDI GEAR_Accessories "A wickedly curved knife"
+#ADDI GEAR_Accessories "A small black-bladed dagger"
+#ADDI GEAR_Accessories "The bands of slaying"
+#ADDI GEAR_Accessories "A crystal"
+#ADDI GEAR_Accessories "A crystal in the shape of the Eye"
+#ADDI GEAR_Accessories "A red crystal"
+#ADDI GEAR_Accessories "A small greenish ring"
+#ADDI GEAR_Accessories "A torn merchant bag"
+
+
+#VAR GEAR_Crystals {} {} VAR
+#ADDI GEAR_Crystals "A crystal"
+#ADDI GEAR_Crystals "A crystal in the shape of the Eye"
+#ADDI GEAR_Crystals "A red crystal"
+
+#VAR GEAR_Rings {} {} VAR
+#ADDI GEAR_Rings "A shimmering silver-quartz ring"
+#ADDI GEAR_Rings "A silver-quartz ring"
+#ADDI GEAR_Rings "A gold scored ring"
+#ADDI GEAR_Rings "A cobalt ring"
+#ADDI GEAR_Rings "A small greenish ring"
+#ADDI GEAR_Rings "An ominous dark ring"
+
+#VAR GEAR_Jewelry {} {} VAR
+#ADDI GEAR_Jewelry "A golden amulet"
+#ADDI GEAR_Jewelry "A simple-looking necklace"
+#ADDI GEAR_Jewelry "An onyx pendant"
+#ADDI GEAR_Jewelry "A mighty war horn"
+#ADDI GEAR_Jewelry "Pasha's war horn"
+#FORALL @Gear_Crystals {#ADDI GEAR_Jewelry %i}
+
+#VAR GEAR_Gambeson {} {} VAR
+#ADDI GEAR_Gambeson "A gambeson shirt"
+
+#VAR GEAR_Face {} {} VAR
+#ADDI GEAR_Face "A hideous mask"
+
+#VAR GEAR_Wagons {} {} VAR
+#ADDI GEAR_Wagons "wagon"
+#ADDI GEAR_Wagons "cart"
+#ADDI GEAR_Wagons "wain"
+
+#VAR GEAR_Accessories_All {} {} VAR
+#FORALL @Gear_Accessories {#ADDI GEAR_Accessories_All %i}
+#FORALL @Gear_Packs {#ADDI GEAR_Accessories_All %i}
+#FORALL @Gear_Cloaks {#ADDI GEAR_Accessories_All %i}
+
+
+
+#VAR Gear_WeaponTypes {} {} VAR
+#ADDI Gear_WeaponTypes "axe"
+#ADDI Gear_WeaponTypes "bow"
+#ADDI Gear_WeaponTypes "flail"
+#ADDI Gear_WeaponTypes "mace"
+#ADDI Gear_WeaponTypes "hammer"
+#ADDI Gear_WeaponTypes "staff"
+#ADDI Gear_WeaponTypes "sword"
+#ADDI Gear_WeaponTypes "spear"
+#ADDI Gear_WeaponTypes "whip"
+#ADDI Gear_WeaponTypes "dagger"
+#ADDI Gear_WeaponTypes "knife"
+#ADDI Gear_WeaponTypes "scimitar"
+#ADDI Gear_WeaponTypes "rod"
+#ADDI Gear_WeaponTypes "plow"
+#ADDI Gear_WeaponTypes "cane"
+#ADDI Gear_WeaponTypes "hoe"
+
+#VAR Gear_Weapons_DoubleWieldable {} {} VAR
+#ADDI Gear_Weapons_DoubleWieldable "morimacil"
+#ADDI Gear_Weapons_DoubleWieldable "stewards longsword"
+#ADDI Gear_Weapons_DoubleWieldable "bastard sword"
+#ADDI Gear_Weapons_DoubleWieldable "miluiant"
+
+#VAR Gear_Weapons_SelfSheathable {} {} VAR
+#ADDI Gear_Weapons_SelfSheathable "huge sword"
+#ADDI Gear_Weapons_SelfSheathable "elven short sword"
+#ADDI Gear_Weapons_SelfSheathable "sindarin sword"
+#ADDI Gear_Weapons_SelfSheathable "haradrim bone sword"
+#ADDI Gear_Weapons_SelfSheathable "intricate sword"
+#ADDI Gear_Weapons_SelfSheathable "twilight dagger"
+#ADDI Gear_Weapons_SelfSheathable "runed dagger"
+#ADDI Gear_Weapons_SelfSheathable "curved dagger"
+#ADDI Gear_Weapons_SelfSheathable "crafted  dagger"
+#ADDI Gear_Weapons_SelfSheathable "blued dagger"
+#ADDI Gear_Weapons_SelfSheathable "runed knife"
+#ADDI Gear_Weapons_SelfSheathable "curved knife"
+#ADDI Gear_Weapons_SelfSheathable "carving knife"
+#ADDI Gear_Weapons_SelfSheathable "long knife"
+
+
+#VAR AAnThe {"a|A|an|An|the|The"} {} VAR
+#VAR Messages_Packtag {"You have no packtag set.|You remove your packtag.|You set your packtag to|Your current packtag is on:"} {} VAR
+#VAR Messages_Packtag_Set {"You set your packtag to|Your current packtag is on:"} {} VAR
+#VAR Messages_Packtag_Remove {"You have no packtag set.|You remove your packtag."} {} VAR
+#VAR Messages_LinhirPermit {"Governor's secretary fumbles the permit while trying to hand it to you.|You casually hold up the permit and let the wind catch it just right."} {} VAR
+#VAR Messages_LinhirPermit_Receive {"Governor's secretary fumbles the permit while trying to hand it to you."} {} VAR
+#VAR Messages_LinhirPermit_Release {"You casually hold up the permit and let the wind catch it just right."} {} VAR
+#VAR Messages_Hands {"You grip your weapon with one hand.|You have no free hands.|You have one free hand.|You grip your weapon with both hands.|You already wield it in two hands!|You have two free hands.|You are not holding anything."} {} VAR
+#VAR Messages_Hands_Full {"You have no free hands.|You grip your weapon with both hands.|You already wield it in two hands!"} {} VAR
+#VAR Messages_Hands_Empty {"You have two free hands.|You are not holding anything."} {} VAR
+#VAR Messages_Hands_OneHand {"You grip your weapon with one hand.|You have one free hand."} {} VAR
+#VAR Messages_WarHorn {"You put the war horn around your neck.|out of tone. It fails to inspire you in any way."} {} VAR
+#VAR Messages_WarHorn_Worn {"You put the war horn around your neck."} {} VAR
+#VAR Messages_WarHorn_Broken {"out of tone. It fails to inspire you in any way."} {} VAR
+#VAR Messages_MixedPotion {"You very carefully slip A mixed potion|You put your lips to the potion and gulp it all down."} {} VAR
+#VAR Messages_MixedPotion_Conceal {"You very carefully slip A mixed potion"} {} VAR
+#VAR Messages_MixedPotion_Drink {"You put your lips to the potion and gulp it all down."} {} VAR
+
+
+#CLASS 0
