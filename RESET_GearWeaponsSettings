@@ -1,0 +1,145 @@
+#CLASS 0
+$CLASS = "Tools|Gear|Settings"
+
+#TR WeaponWielded {~*({@Gear_WeaponNames})*~(wielded~)} {
+#VAR Wielding {1} {} VAR
+Gear_LookupWeapon %lower(%0)
+Gear_AssignWeapon %lower(%0)
+} $CLASS
+
+#TR WeaponWield {You wield ({@Gear_WeaponNames})} {
+#VAR Wielding {1} {} VAR
+#VAR HandsFree {1} {} VAR
+Gear_LookupWeapon %lower(%0)
+Gear_AssignWeapon %lower(%0)
+} $CLASS
+
+#TR WeaponWieldedInHands {You are holding ({@Gear_WeaponNames}) ~(wielded~)} {
+#VAR Wielding {1} {} VAR
+#VAR HandsFree {0} {} VAR
+Gear_LookupWeapon %lower(%0)
+Gear_AssignWeapon %lower(%0)
+} $CLASS
+
+#TR WeaponWear {You wear *({@Gear_Sheaths}) {"containing|with"} ({@Gear_WeaponNames}).} {
+Gear_LookUpArmour %lower(%1)
+Gear_AssignArmour %lower(%1)
+Gear_AssignWeapon %lower(%2)
+} $CLASS
+
+#TR WeaponInWornSheath {~**({@Gear_Sheaths})* {"containing|with"} ({@Gear_WeaponNames}) ~(worn~)} {
+Gear_LookUpArmour %lower(%1)
+Gear_AssignArmour %lower(%2)
+Gear_LookupWeapon %lower(%2)
+Gear_AssignWeapon %lower(%2)
+} $CLASS
+
+#TR WeaponStore {You store ({@Gear_WeaponNames}) in ({@Gear_Sheaths}).} {
+#VAR Wielding {} {} VAR
+Gear_LookupWeapon %lower(%1)
+Gear_AssignWeapon %lower(%1)
+Gear_LookUpArmour %lower(%2)
+Gear_AssignArmour %lower(%2)
+} $CLASS
+
+#TR Daggers {~*({@Gear_Daggers})} {
+Gear_AssignDagger %lower(%1)
+} $CLASS
+
+#TR WeaponRemoveSheath {You remove *({@Gear_Sheaths}) {"containing|with"} ({@Gear_WeaponNames})} {
+Gear_LookUpArmour %lower(%1)
+Gear_UnassignArmour
+Gear_UnAssignWeapon
+} $CLASS
+
+#TR WeaponRemove {You remove ({@Gear_WeaponNames})} {
+#VAR Wielding {} {} VAR
+} $CLASS
+
+
+//Special Weapon Emotes
+#TR SheathLHBS {You slide the bone sword into its accompanying sheath smoothly.} {
+#VAR Wielding {} {} VAR
+Gear_LookupWeapon "a long haradrim bone sword"
+Gear_AssignWeapon "a long haradrim bone sword"
+} $CLASS
+
+#TR OnehandedBattleAxe {({@Messages_OneHandedBattleAxe})} {
+$Message=%1
+$level=0
+#SW ($Message="The gem is dull grey in color.") {$level=0
+} ($Message="The gem is a dull black color.") {$level=1
+} ($Message="The gem is black and seems to radiate a cold darkness.") {$level=2
+} ($Message="All light surrounding the gem seems to be absorbed.") {$level=3
+} ($Message="The gem is black and seems alive with evil energy.") {$level=4
+
+//Demonic Alignment: <=-750
+} ($Message="The gem is dull red in color.") {$level=1
+} ($Message="The red gem throbs slowly with an internal light.") {$level=2
+} ($Message="The gem shines with a wicked red light.") {$level=3
+} ($Message="The gem's red glow leaves an evil feeling about the axe.") {$level=4
+
+//Villainous Alignment: <=-500
+} ($Message="The gem is a dark orange color.") {$level=1
+} ($Message="A muted orange light comes from the gem.") {$level=2
+} ($Message="Black shadows flash across the glowing orange gem.") {$level=3
+} ($Message="A fiery orange light radiats from within the gem.") {$level=4
+
+//Immoral Alignment: <=-125
+} ($Message="The gem is a dark blue, almost black.") {$level=1
+} ($Message="A purple glow surrounds the dark blue gem.") {$level=2
+} ($Message="The soft purple glow of the gem leaves you feeling uneasy.") {$level=3
+} ($Message="An eerie purple flame burns around the gem.") {$level=4
+
+//Impartial: -125 to 125
+} ($Message="The multi-colored gem looks dull and lifeless.") {$level=1
+} ($Message="The gem's multiple colors swirl lazilly within it.") {$level=2
+} ($Message="The gem releases a soft glow of constantly changing colors.") {$level=3
+} ($Message="The colors within the gem swirl and mix rapidly in a hypnotic manner.") {$level=4
+
+//Moral: <=400
+} ($Message="The gem is opaque and light blue in color.") {$level=1
+} ($Message="The gem's heart seems to be a swirling blue mist.") {$level=2
+} ($Message="A bright blue light fills the gem.") {$level=3
+} ($Message="The gem shines pure and blue, reminding you of a clear sky.") {$level=4
+
+//Heroic: <=749
+} ($Message="The gem is an ugly yellow color.") {$level=1
+} ($Message="The gem is pale yellow in color.") {$level=2
+} ($Message="The gem shines with a golden metallic hue.") {$level=3
+} ($Message="A golden glow shines forth from the gem's heart.") {$level=4
+
+//Angelic: <=999
+} ($Message="The gem is a dull white color.") {$level=1
+} ($Message="The gem is bright white and shimmers as light hits it.") {$level=2
+} ($Message="A soft white light fills the gem.") {$level=3
+} ($Message="The gem is releasing a pure, comforting white light.") {$level=4
+
+//Hand of Eru: >=1000
+} ($Message="The gem has a silvery, metallic gleam to it.") {$level=1
+} ($Message="A dim silver light shines from deep within the gem.") {$level=2
+} ($Message="A bright silver aura surrounds the gem.") {$level=3
+} ($Message="The gem is immersed in a powerful silver radiance.") {$level=4
+}
+
+$hit=65
+$damage=75
+#SW ($level=1) {
+  $hit=70
+  $damage=80
+} ($level=2) {
+  $hit=75
+  $damage=85
+} ($level=3) {
+  $hit=85
+  $damage=95
+  } ($level=4) {
+  $hit=95
+  $damage=100
+}
+
+#VAR MyWep_Hit {$hit} {} VAR
+#VAR MyWep_Damage {$damage} {} VAR
+#ECHO One Handed Battle Axe power updated. Level: $level ~| Hit: $hit ~| Damage: $damage
+} $CLASS
+#CLASS 0
