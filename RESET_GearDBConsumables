@@ -1,0 +1,28 @@
+#CLASS 0
+//name:
+//id:
+//uses:
+//instant heal
+//delayed heal
+//total heal
+//total time
+//delayed recovery: rather drunk, somewhat drunk, tipsy, headache
+#VAR GEAR_Consumables {} {} VAR
+#ADDI GEAR_Consumables "A keg of aule's hammer|aule's hammer|8|95|210s|280|420"
+#ADDI Gear_Consumables "A small leather canteen|leather canteen|4|79|210s|255|430"
+#ADDI Gear_Consumables "A keg of umbar's finest|keg of umbar's finest|4|60|210|193|370"
+#ADDI Gear_Consumables "A glass of spider blood|spider blood|1|75|246"
+#ADDI Gear_Consumables "A bottle of strong wine|strong wine|1|62|225|180|327"
+#ADDI Gear_Consumables "A bottle of wine|wine|1|52|300|145|495"
+
+
+//A keg of Hill of Guard Special Brew 243g: 35hp, 20 instant, 15 delayed
+//A keg of Dark Lord Special Reserve 200g: 61hp, 12 instant, 49 delayed
+
+//Jerky: 20hp each, 160hp full, 18 in pack
+//A large mixed meat pie: 30hp each, 150hp full, 12 in pack
+//A strip of tarky: 19hp, 76hp full, 37 in pack
+//meat pie: 12hp, 108hp full, 30 in pack
+//roast dog (35g): 40hp each, 80hp full, 9 in pack
+//sugared cockroach (25g): probably 100+
+#CLASS 0
