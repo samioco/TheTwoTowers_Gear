@@ -1,0 +1,213 @@
+#CLASS 0
+$CLASS = "Tools|Gear|EXE"
+
+
+// ------------ Gear_LookUpArmour ------------
+//need: param1: item short name (i.e. "A dark mail shirt")
+//output: #VAR Gear_LookUpArmour_* {} {} VAR
+#AL Gear_LookUpArmour {
+$item=%lower(%0)
+$record=""
+$itemScore=""
+#FORALL @Gear_Armour {#IF ($item=%lower(%item(%i,1))) {$record=%lower(%i);#BREAK}}
+//#ECHO record found: $record
+#VAR Gear_LookUpArmour_Record {$record} {} VAR
+#VAR Gear_LookUpArmour_Name {%item($record,1)} {} VAR
+#VAR Gear_LookUpArmour_ID {%item($record,2)} {} VAR
+#VAR Gear_LookUpArmour_Slots {%replace(%item($record,3),"/","|")} {} VAR
+#VAR Gear_LookUpArmour_Deflect {%item($record,4)} {} VAR
+#VAR Gear_LookUpArmour_Absorb {%item($record,5)} {} VAR
+#VAR Gear_LookUpArmour_Weight {%item($record,6)} {} VAR
+#VAR Gear_LookUpArmour_Durability {%item($record,7)} {} VAR
+#VAR Gear_LookUpArmour_Capacity {%item($record,8)} {} VAR
+#IF (%item($record,9)) {
+  #VAR Gear_LookUpArmour_Notes {%item($record,9)} {} VAR
+} {#VAR Gear_LookUpArmour_Notes {@Gear_LookUpArmour_Slots} {} VAR
+}
+
+//Ddodge Rating (DR) = (Deflect/3) - (Weight/25)
+#MATH Gear_LookUpArmour_DR ((@Gear_LookUpArmour_Deflect/3) - (@Gear_LookUpArmour_Weight/25))
+#VAR Gear_LookUpArmour_DR {%format(1,@Gear_LookUpArmour_DR)} {} VAR
+
+//Armour Score = (Deflect + Absorb) - <Deflect Rating loss due to weight>
+//Pack Score = Capacity + (Deflect + Absorb) - Weight
+//Cloak Score = Capacity + (Deflect + Absorb) - Weight
+
+#IF ((%ismember(@Gear_LookUpArmour_Name,@Gear_Packs)) || (%ismember(@Gear_LookUpArmour_Name,@Gear_Cloaks))) {
+  #MATH Gear_LookUpArmour_Score (@Gear_LookUpArmour_Capacity + @Gear_LookUpArmour_Deflect + @Gear_LookUpArmour_Absorb - @Gear_LookUpArmour_Weight)
+} {
+  #MATH Gear_LookUpArmour_Score ((@Gear_LookUpArmour_Deflect + @Gear_LookUpArmour_Absorb) - ((@Gear_LookUpArmour_Weight/25) * 3))
+}
+#VAR Gear_LookUpArmour_Score {%format(1,%float(@Gear_LookUpArmour_Score))} {} VAR
+
+//#VAR Gear_LookUpArmour_Score {$itemScore} {} VAR
+//#ECHO Armour_DR: @Armour_DR
+//#ECHO name: @Armour_Name, def: @Armour_Deflect, weight: @Armour_Weight, dr: @Armour_DR
+
+} $CLASS
+// ------------ Gear_LookUpArmour ------------
+
+
+
+// ------------ Gear_CompareArmour ------------
+//Param: item short name
+#AL Gear_CompareArmour {$item=%proper(%0)
+//Gear_LookUpArmour $item
+Gear_Armour_SetCompareItem $item
+#VAR Gear_CompareArmour_Result {0} {} VAR
+//compare against stat in slot 1
+$itemSlot = %item(@Gear_LookUpArmour_Slots,1)
+$MyItemName = @{%concat("My",%item(@Gear_LookUpArmour_Slots,1))}
+$MyitemScore = @{%concat("My",%item(@Gear_LookUpArmour_Slots,1),"_Score")}
+#IF (@Gear_CompareArmour_Score>=$MyitemScore) {#VAR Gear_CompareArmour_Result {1} {} VAR}
+Gear_CompareArmour_DisplayResults $itemSlot
+} $CLASS
+// ------------ Gear_CompareArmour ------------
+
+
+
+// ------------ Gear Armour Compare ------------
+//Param: item short name
+#AL ArmComp {$item=%proper(%0);Gear_CompareArmour $item} $CLASS
+// ------------ Gear Armour Compare ------------
+
+
+
+// ------------ Gear Armour Swap  ------------
+//param1: armour slot
+#AL Gear_SwapArmour {$slot=%lower(%0)
+#IF (!%ismember($slot,%lower(@ArmourSlots))) {
+  #ECHO Syntax: Gear_CompareArmour_DisplayResults ~<slot~>
+  #ECHO Armour Slots: @ArmourSlots
+  #EXE {%CR}
+} {$MyName=%lower(@MyName);$MyNamePossessive=%lower(@{%concat(@MyName,"_Possessive")})
+
+$item_name=@{%concat("My",$slot)}
+$item_id=@{%concat("My",$slot,"_id")}
+$item_slots=@{%concat("My",$slot,"_slots")}
+$item_deflect=@{%concat("My",$slot,"_deflect")}
+$item_absorb=@{%concat("My",$slot,"_absorb")}
+$item_weight=@{%concat("My",$slot,"_weight")}
+$item_dr=@{%concat("My",$slot,"_dr")}
+$item_score=@{%concat("My",$slot,"_score")}
+$item_dura = @{%concat("My",$slot,"_dura")}
+$item_cap = @{%concat("My",$slot,"_cap")}
+$item_notes = @{%concat("My",$slot,"_notes")}
+#VAR Gear_Armour_Old_Name {$item_name} {} VAR
+#VAR Gear_Armour_Old_ID {$item_id} {} VAR
+#VAR Gear_Armour_Old_Slots {$item_slots} {} VAR
+#VAR Gear_Armour_Old_Deflect {$item_deflect} {} VAR
+#VAR Gear_Armour_Old_Absorb {$item_absorb} {} VAR
+#VAR Gear_Armour_Old_Weight {$item_weight} {} VAR
+#VAR Gear_Armour_Old_Durability {$item_dura} {} VAR
+//#VAR Gear_Armour_Old_Bulk {} {} VAR
+#VAR Gear_Armour_Old_Capacity {$item_cap} {} VAR
+#VAR Gear_Armour_Old_DR {$item_dr} {} VAR
+#VAR Gear_Armour_Old_Score {$item_score} {} VAR
+#VAR Gear_Armour_Old_Notes {$item_notes} {} VAR
+
+#IF (@Gear_CompareArmour_Result) {
+sss
+$exe=""
+#IF ($item_id) {
+  #IF ($item_id=@Gear_LookUpArmour_ID) {$exe=%concat("do untag ",$item_id," 2,drop ",$item_id," 2,get ",$item_id," 2")
+} {$exe=%concat("do untag ",$item_id,",drop ",$item_id)}
+  #EXE {$exe}
+}
+#IF (@Mounted) {dismount}
+$exe=%concat("do wear ",@Gear_LookUpArmour_ID,",tag ",@Gear_LookUpArmour_ID)
+#IF (@Mounted) {mm}
+#EXE {$exe}
+
+$exe=""
+#IF ($item_id) {
+  #IF (@Gear_Wagon) {
+    #IF ((%len($exe)) && (%rightback($exe,1)!=",")) {$exe=%concat($exe,",")}
+    $exe=%concat($exe,"get ",$item_id," into ",@MyWagon)
+  }
+  #IF (@Gear_Saddlebags) {
+    #IF ((%len($exe)) && (%rightback($exe,1)!=",")) {$exe=%concat($exe,",")}
+    $exe=%concat($exe,"get ",$item_id," into saddlebags")
+  }
+  #IF (@Gear_Panniers) {
+    #IF ((%len($exe)) && (%rightback($exe,1)!=",")) {$exe=%concat($exe,",")}
+    $exe=%concat($exe,"get ",$item_id," into panniers")
+  }
+  #IF (@Gear_Pack) {
+    #IF ((%len($exe)) && (%rightback($exe,1)!=",")) {$exe=%concat($exe,",")}
+    $exe=%concat($exe,"get ",$item_id," into pack")
+  }
+  #IF ((%len($exe)) && (%rightback($exe,1)!=",")) {$exe=%concat($exe,",")}
+  $exe=%concat($exe,"get ",$item_id)
+}
+#IF ((%len($exe)) && (%rightback($exe,1)!=",")) {$exe=%concat($exe,",")}
+$exe=%concat($exe,"wear all")
+#IF (%pos(",",$exe)) {$exe=%concat("do ",$exe)}
+#EXE {$exe}
+}
+}} $CLASS
+
+
+
+//need: Gear_LookUpArmour_Record previously called
+#AL Gear_AssignArmour {
+//Lookup to slots: item name, item stats
+#FORALL @Gear_LookUpArmour_Slots {
+  #VAR My%proper(%i) {@Gear_LookUpArmour_Name} {} VAR
+  //#ECHO Assigned: @{My%proper(%i)}
+  #VAR %concat("My",%i,"_id") {@Gear_LookUpArmour_ID} {} VAR
+  #VAR %concat("My",%i,"_slots") {@Gear_LookUpArmour_Slots} {} VAR
+  #VAR %concat("My",%i,"_deflect") {@Gear_LookUpArmour_Deflect} {} VAR
+  #VAR %concat("My",%i,"_absorb") {@Gear_LookUpArmour_Absorb} {} VAR
+  #VAR %concat("My",%i,"_weight") {@Gear_LookUpArmour_Weight} {} VAR
+  #VAR %concat("My",%i,"_dura") {@Gear_LookUpArmour_Durability} {} VAR
+  //#VAR %concat("My",%i,"_bulk") {@Gear_LookUpArmour_Bulk} {} VAR
+  #VAR %concat("My",%i,"_cap") {@Gear_LookUpArmour_Capacity} {} VAR
+  #VAR %concat("My",%i,"_dr") {@Gear_LookUpArmour_DR} {} VAR
+  #VAR %concat("My",%i,"_score") {@Gear_LookUpArmour_Score} {} VAR
+  #VAR %concat("My",%i,"_notes") {@Gear_LookUpArmour_Notes} {} VAR
+}
+} $CLASS
+
+//need: Gear_LookUpArmour_Record previously called
+#AL Gear_UnAssignArmour {
+//Lookup to slots: item name, item stats
+#FORALL @Gear_LookUpArmour_Slots {
+  #DELI Gear_Armour_List @{%concat("My",%i)}
+  #VAR My%i {} {} VAR
+  #VAR %concat("My",%i,"_id") {} {} VAR
+  #VAR %concat("My",%i,"_slots") {} {} VAR
+  #VAR %concat("My",%i,"_deflect") {} {} VAR
+  #VAR %concat("My",%i,"_absorb") {} {} VAR
+  #VAR %concat("My",%i,"_weight") {} {} VAR
+  #VAR %concat("My",%i,"_dura") {} {} VAR
+  //#VAR %concat("My",%i,"_bulk") {} {} VAR
+  #VAR %concat("My",%i,"_cap") {} {} VAR
+  #VAR %concat("My",%i,"_score") {} {} VAR
+  #VAR %concat("My",%i,"_notes") {} {} VAR
+}
+} $CLASS
+
+// ------------ Gear_Armour_SetCompareItem ------------
+//Assign Compare Item Stats to Lookup Vars
+//Param: item short name ("A dark mail shirt")
+#AL Gear_Armour_SetCompareItem {$item=%proper(%0)
+Gear_LookUpArmour $item
+#VAR Gear_CompareArmour_Record {@Gear_LookUpArmour_Record} {} VAR
+#VAR Gear_CompareArmour_Name {@Gear_LookUpArmour_Name} {} VAR
+#VAR Gear_CompareArmour_ID {@Gear_LookUpArmour_ID} {} VAR
+#VAR Gear_CompareArmourSlots {@Gear_LookUpArmour_Slots} {} VAR
+#VAR Gear_CompareArmour_Deflect {@Gear_LookUpArmour_Deflect} {} VAR
+#VAR Gear_CompareArmour_Absorb {@Gear_LookUpArmour_Absorb} {} VAR
+#VAR Gear_CompareArmour_Weight {@Gear_LookUpArmour_Weight} {} VAR
+#VAR Gear_CompareArmour_Durability {@Gear_LookUpArmour_Durability} {} VAR
+#VAR Gear_CompareArmour_Bulk {@Gear_LookUpArmour_Bulk} {} VAR
+#VAR Gear_CompareArmour_Capacity {@Gear_LookUpArmour_Capacity} {} VAR
+#VAR Gear_CompareArmour_DR {@Gear_LookUpArmour_DR} {} VAR
+#VAR Gear_CompareArmour_Score {@Gear_LookUpArmour_Score} {} VAR
+#VAR Gear_CompareArmour_Notes {@Gear_LookUpArmour_Notes} {} VAR
+} $CLASS
+// ------------ Gear_Armour_SetCompareItem ------------
+
+
+#CLASS 0
