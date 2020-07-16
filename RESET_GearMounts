@@ -1,0 +1,237 @@
+#CLASS 0
+$CLASS = "Tools|Gear|Mounts"
+
+#TR SellWagon {You sell your wagon} {
+#VAR Gear_Wagon {} {} VAR
+} $CLASS
+
+#TR PartyWagon {^ ({@Party}{"'|'s"}) {"huge|supply"} ({@Gear_Wagons})} {
+$owner=%lower(%1)
+$WagonType=%lower(%2)
+//#ECHO Seeing party member wagon: $owner $WagonType
+#IF (!@Gear_PartyWagons) {#VAR Gear_PartyWagons {} {} VAR}
+$wagonName=%lower(%concat($owner," ",$WagonType))
+#ADDI Gear_PartyWagons $wagonName
+} $CLASS
+
+#TR MyWagon {^ Your {"huge|supply"} ({@Gear_Wagons})} {
+#VAR Gear_WagonType {%1} {} VAR
+#VAR Gear_Wagon {@Gear_WagonType} {} VAR
+$mywag=%lower(%concat(@MyNamePossessive," ",@Gear_WagonType))
+#VAR MyWagon {$mywag} {} VAR
+#VAR MyContainers {} {} VAR
+#IF (@Gear_Pack) {#ADDI MyContainers "pack"}
+#IF (@Gear_Panniers) {#ADDI MyContainers "panniers"}
+#IF (@Gear_Saddlebags) {#ADDI MyContainers "saddlebags"}
+#IF (@Gear_Wagon) {#ADDI MyContainers @MyWagon}
+#IF (@Gear_PartyWagons) {#FORALL @Gear_PartyWagons {#ADDI MyContainers %i}}
+} $CLASS
+
+
+#TR PackSaddlebags {You put a {"sturdy|large"} pair of saddlebags on @MyNamePossessive * ~[packed~]} {
+#VAR Gear_Saddlebags {1} {} VAR
+#ECHO Saddlebags packed!
+} $CLASS
+
+ #TR PackPanniers {You put a set of panniers on @MyNamePossessive *{@Mounts} ~[packed~]} {
+ #VAR Gear_Panniers {1} {} VAR
+ #ECHO Panniers packed!
+ } $CLASS
+
+//#TR PackedMount {@MyNamePossessive *{@Mounts} *~[packed~]} {
+//#VAR Mount {1} {} VAR
+//#SW (@MyFaction="ER") {#VAR Gear_Saddlebags {1} {} VAR} {#VAR Gear_Panniers {1} {} VAR}
+//} $CLASS
+
+#TR UnPack {You unpack @MyNamePossessive *{@Mounts} ~[packed~]} {
+#VAR Mount {@MyMount} {} VAR
+#VAR Gear_Saddlebags {} {} VAR
+#VAR Gear_Panniers {} {} VAR
+#ECHO Unpacked Saddlebags/Panniers
+} $CLASS
+
+
+
+#TR SetPacktag {You set your packtag * ({"pair of panniers|pair of saddlebags|wagon|cart|wain"}).} {
+$packtag=%1
+#ECHO Packtag: %1
+#SW (%pos("saddlebags",$packtag)) {
+  #VAR Gear_Packtag {"saddlebags"} {} VAR
+  #VAR Gear_Saddlebags {1} {} VAR
+} (%pos("panniers",$packtag)) {
+  #VAR Gear_Packtag {"panniers"} {} VAR
+  #VAR Gear_Panniers {1} {} VAR
+} (%pos("cart",$packtag)) {
+  #VAR Gear_Packtag {"cart"} {} VAR
+  #VAR Gear_WagonType {"cart"} {} VAR
+  #VAR Gear_Wagon {"cart"} {} VAR
+} (%pos("wagon",$packtag)) {
+  #VAR Gear_Packtag {"wagon"} {} VAR
+  #VAR Gear_WagonType {"wagon"} {} VAR
+  #VAR Gear_Wagon {"wagon"} {} VAR
+} (%pos("wain",$packtag)) {
+  #VAR Gear_Packtag {"wain"} {} VAR
+  #VAR Gear_WagonType {"wain"} {} VAR
+  #VAR Gear_Wagon {"wain"} {} VAR}
+#IF (%ismember($packtag,"wagon|cart|wain")) {
+  #VAR Gear_WagonType {%lower($packtag)} {} VAR
+  #VAR Gear_Wagon {@Gear_WagonType} {} VAR
+  $mywag=%lower(%concat(@MyNamePossessive," ",@Gear_WagonType"))
+  #VAR Gear_Wagon {$mywag} {} VAR
+}
+} $CLASS
+
+#TR PacktagSet {Your current packtag is on: %1.} {
+$packtag=%1
+#ECHO Packtag: %1
+#SW (%pos("saddlebags",$packtag)) {
+  #VAR Gear_Packtag {"saddlebags"} {} VAR
+  #VAR Gear_Saddlebags {1} {} VAR
+} (%pos("panniers",$packtag)) {
+  #VAR Gear_Packtag {"panniers"} {} VAR
+  #VAR Gear_Panniers {1} {} VAR
+} (%pos("cart",$packtag)) {
+  #VAR Gear_Packtag {"cart"} {} VAR
+  #VAR Gear_WagonType {"cart"} {} VAR
+  #VAR Gear_Wagon {"cart"} {} VAR
+} (%pos("wagon",$packtag)) {
+  #VAR Gear_Packtag {"wagon"} {} VAR
+  #VAR Gear_WagonType {"wagon"} {} VAR
+  #VAR Gear_Wagon {"wagon"} {} VAR
+} (%pos("wain",$packtag)) {
+  #VAR Gear_Packtag {"wain"} {} VAR
+  #VAR Gear_WagonType {"wain"} {} VAR
+  #VAR Gear_Wagon {"wain"} {} VAR}
+#IF (%ismember($packtag,"wagon|cart|wain")) {
+  #VAR Gear_WagonType {%lower($packtag)} {} VAR
+  #VAR Gear_Wagon {@Gear_WagonType} {} VAR
+  $mywag=%lower(%concat(@MyNamePossessive," ",@Gear_WagonType"))
+  #VAR Gear_Wagon {$mywag} {} VAR
+}
+} $CLASS
+
+#TR PacktagRemove {You remove your packtag.} {
+#VAR Gear_Packtag {} {} VAR
+#ECHO Gear_Packtag: Removed
+} $CLASS
+
+
+#TR Mounted {({@Messages_Mounted})(*)} {
+$loc=%roomnum()
+#IF (%roomid) {$loc=%roomid()}
+#VAR Mounted {@MyMount} {} VAR
+#VAR Mount {@MyMount} {} VAR
+#VAR Mount_Hitched {} {} VAR
+#IF ((%1="You mount") AND (%pos(@MyNamePossessive,%2))) {
+  #VAR Mount {@MyMount} {} VAR
+  #VAR Mount_Pickup {$loc} {} VAR
+}
+} $CLASS
+
+#TR UnMounted {{@Messages_UnMounted}} {
+#VAR Mount {@MyMount} {} VAR
+#VAR Mounted {} {} VAR
+} $CLASS
+
+#TR Dismount {{@Messages_Dismount}} {
+#VAR Mount {@MyMount} {} VAR
+#VAR Mounted {} {} VAR
+$loc=%roomnum();#IF (%roomid()) {$loc=%roomid()}
+#VAR Dismount {$loc} {} VAR
+} $CLASS
+
+#TR CantTrample {{@Messages_CantTrample}} {#VAR Mounted {} {} VAR} $CLASS
+
+//#UNT Mounts_Hitched
+#TR Hitched {{@Messages_Hitched}} {
+$loc=%roomnum();#IF (%roomid) {$loc=%roomid()}
+#VAR Hitched {$loc} {} VAR
+#VAR Mount {@MyMount} {} VAR
+#VAR Mounted {} {} VAR
+} $CLASS
+
+#TR HitchMyMount {You secure @MyMount to the hitching post.} {
+$loc=%roomnum();#IF (%roomid) {$loc=%roomid()}
+#VAR Hitched {$loc} {} VAR
+#VAR Mount {@MyMount} {} VAR
+#VAR Mounted {} {} VAR
+} $CLASS
+
+//#UNT Mounts_UnHitched
+#TR UnHitched {{@Messages_UnHitched}} {
+$loc=%roomnum();#IF (%roomid) {$loc=%roomid()}
+#VAR Mount {@MyMount} {} VAR
+#VAR Hitched {$loc} {} VAR
+} $CLASS
+
+#TR UnHitchedRelease {You release @MyMount from the hitching post.} {
+$loc=%roomnum();#IF (%roomid) {$loc=%roomid()}
+#VAR Mount {@MyMount} {} VAR
+#VAR Hitched {$loc} {} VAR
+} $CLASS
+
+
+#TR ReinsDrop {{@Messages_ReinsDrop}} {
+$loc=%roomnum();#IF (%roomid) {$loc=%roomid()}
+#VAR Mount {@MyMount} {} VAR
+#VAR Hitched {} {} VAR
+#VAR ReinsDropped {$loc} {} VAR
+} $CLASS
+
+#TR ReinsPickUp {{@Messages_ReinsPickup}} {
+$loc=%roomnum();#IF (%roomid) {$loc=%roomid()}
+#VAR Mount {@MyMount} {} VAR
+#VAR Hitched {} {} VAR
+#VAR ReinsPickup {$loc} {} VAR
+} $CLASS
+
+#TR MonstrousWarg {^@MyNamePossessive monstrous warg is called '%1' by {"his|her|its"} owner.} {
+#VAR CurMon {%1} {} VAR
+#VAR MyMon {%1} {} VAR
+#VAR MonstrousWarg {%1} VAR
+SysMsg Monstrous Warg: @MonstrousWarg
+} $CLASS
+
+#TR RoanHorse {^@MyNamePossessive roan horse is called '%1' by {"his|her|its"} owner.} {
+#VAR Mount {%lower(%1)} {} VAR
+#VAR MyMount {%lower(%1)} {} VAR
+SysMsg MyMount updated: %proper(@MyMount)
+} $CLASS
+
+#TR Warg {^@MyNamePossessive warg is called '%1' by {"his|her|its"} owner.} {
+#VAR Mount {%lower(%1)} {} VAR
+#VAR MyMount {%lower(%1)} {} VAR
+SysMsg MyMount updated: %proper(@MyMount)
+} $CLASS
+
+#TR Warhorse {^@MyNamePossessive warhorse is called '%1' by {"his|her|its"} owner.} {
+#VAR Mount {%lower(%1)} {} VAR
+#VAR MyMount {%lower(%1)} {} VAR
+SysMsg MyMount updated: %proper(@MyMount)
+} $CLASS
+
+#TR MagnificentSteed {^@MyNamePossessive magnificent steed is called '%1' by {"his|her|its"} owner.} {
+#VAR Mount {%lower(%1)} {} VAR
+#VAR MyMount {%lower(%1)} {} VAR
+SysMsg MyMount updated: %proper(@MyMount)
+} $CLASS
+
+#TR YoungMumak {^@MyNamePossessive young mumak is called '%1' by {"his|her|its"} owner.} {
+#VAR Mount {%lower(%1)} {} VAR
+#VAR MyMount {%lower(%1)} {} VAR
+SysMsg MyMount updated: %proper(@MyMount)
+} $CLASS
+
+#TR Mumak {^@MyNamePossessive mumak is called '%1' by {"his|her|its"} owner.} {
+#VAR Mount {%lower(%1)} {} VAR
+#VAR MyMount {%lower(%1)} {} VAR
+SysMsg MyMount updated: %proper(@MyMount)
+} $CLASS
+
+#TR Camel {^@MyNamePossessive camel is called '%1' by {"his|her|its"} owner.} {
+#VAR Mount {%lower(%1)} {} VAR
+#VAR MyMount {%lower(%1)} {} VAR
+SysMsg MyMount updated: %proper(@MyMount)
+} $CLASS
+
+#CLASS 0
