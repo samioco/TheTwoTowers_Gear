@@ -1,0 +1,229 @@
+#CLASS 0
+$CLASS = "Tools|Gear|EXE"
+
+
+// -------------- ARMSTAT ------------------------
+#AL ArmStat {
+$item=""
+Gear_DisplayArmourHeaderline
+#FORALL "DR|Deflect|Absorb|Weight|Bulk|Capacity|Score" {
+  #VAR %concat("Gear_Armour_Total_",%i) {} {} VAR
+}
+#FORALL @ArmourSlots {
+  $item=@{%concat("My",%i)}
+  #IF ($item) {#ADDI Gear_Armour_List @{My%i}}
+}
+#FORALL @Gear_Armour_List {
+  $item=%i
+  #VAR Gear_Armour_Name {%i} {} VAR
+  Gear_DisplayArmourItem $item
+  #ADD Gear_Armour_Total_DR @Gear_LookUpArmour_DR
+  #ADD Gear_Armour_Total_Deflect @Gear_LookUpArmour_Deflect
+  #ADD Gear_Armour_Total_Absorb @Gear_LookUpArmour_Absorb
+  #ADD Gear_Armour_Total_Weight @Gear_LookUpArmour_Weight
+  #ADD Gear_Armour_Total_Capacity @Gear_LookUpArmour_Capacity
+  #IF ((!%ismember($item,@Gear_Packs)) && (!%ismember($item,@Gear_Cloaks))) {
+    #ADD Gear_Armour_Total_Score %format(1,@Gear_LookUpArmour_Score)
+  }
+}
+Gear_DisplayArmourTotals
+} $CLASS
+// -------------- ARMSTAT ------------------------
+
+
+//Param: list of armour names
+//Purpose: calcuate item scores and sort list by scores
+//Return: 2-item list: [itemScore, itemName]
+#AL DisplayArmourList {
+$list=%0
+#IF (!$list) {$list=@Gear_ArmourNames}
+#VAR GearDBArmourDisplay {} {} VAR
+$items=""
+#FORALL $list {
+  Gear_LookUpArmour %i
+  #ADDI $items %concat(~",@Gear_LookUpArmour_Name,"|",%format(1,@Gear_LookUpArmour_Score),~")
+}
+//#ECHO items: $items
+SortGearList $items
+Gear_DisplayArmourHeaderline
+#FORALL @GearSortedList {
+  Gear_LookupArmour %lower(%item(%i,1))
+  Gear_DisplayArmourItem %lower(%item(%i,1))
+}
+ShowLine 110
+} $CLASS
+
+
+// ------------ Gear Armour Compare/Display  ------------
+//param1: slot
+//Will compare @Myslot_Stats to LookUpArmour_Var
+#AL Gear_CompareArmour_DisplayResults {$slot=%lower(%1)
+#IF (!%ismember($slot,@ArmourSlots)) {#ECHO Syntax: Gear_CompareArmour_DisplayResults ~<slot~>;#ECHO Armour Slots: @ArmourSlots;#ECHO {}
+} {
+$item_name=@{%concat("My",$slot)}
+Gear_DisplayArmourHeaderline
+Gear_DisplayArmourItem $item_name
+Gear_DisplayArmourItem @Gear_CompareArmour_Name
+ShowLine 100
+
+#IF (@Gear_CompareArmour_Result) {
+#ECHO New Item is Better/Newer: @Gear_LookUpArmour_Name ~(Score: @Gear_CompareArmour_Score~)
+} {#ECHO Keep Current Item: $item_name}
+ShowLine 100
+}} $CLASS
+// ------------ Gear Armour Compare/Display  ------------
+
+
+#AL Gear_DisplayArmourHeaderline {
+#CR
+ShowLine 110
+$display="Armour"
+#LOOP (35 - %len($display)) {$display=%concat($display," ")}
+$display=%concat($display,"ID")
+#LOOP (60 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left("Def",3)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (65 - %len($display)) {$display=%concat($display," ")}
+$item = %left("Abs",3)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (70 - %len($display)) {$display=%concat($display," ")}
+$item = %left("Wgt",3)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (75 - %len($display)) {$display=%concat($display," ")}
+$item = %left("Dura",4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (80 - %len($display)) {$display=%concat($display," ")}
+$item = %left("Capa",4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (85 - %len($display)) {$display=%concat($display," ")}
+$item = %left("DR",4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (90 - %len($display)) {$display=%concat($display," ")}
+$item = %left("Score",6)
+#LOOP 7-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (98 - %len($display)) {$display=%concat($display," ")}
+$display=%concat($display,"Notes")
+#ECHO $display
+ShowLine 110
+} $CLASS
+
+// ------------ Gear_Armour_Display_Item ------------
+//param: item short name ("A dark mail shirt")
+//Displays one line stats of param item
+#AL Gear_DisplayArmourItem {
+$item=%lower(%0)
+Gear_LookUpArmour $item
+$display=%left(%concat(@Gear_LookupArmour_Name),33)
+#LOOP (35 - %len($display)) {$display=%concat($display," ")}
+
+$display=%concat($display,%left(@Gear_LookUpArmour_ID,23))
+
+#LOOP (60 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%int(@Gear_LookUpArmour_Deflect)),3)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (65 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%int(@Gear_LookUpArmour_Absorb)),3)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (70 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%int(@Gear_LookUpArmour_Weight)),3)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (75 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%int(@Gear_LookUpArmour_Durability)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (80 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%int(@Gear_LookUpArmour_Capacity)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (85 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%int(@Gear_LookUpArmour_DR)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (90 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%format(1,%float(@Gear_LookUpArmour_Score))),6)
+#LOOP 7-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (98 - %len($display)) {$display=%concat($display," ")}
+
+$display=%concat($display,@Gear_LookUpArmour_Notes)
+#ECHO $display
+} $CLASS
+// ------------ Gear_Armour_Display_Item ------------
+
+#AL Gear_DisplayArmourTotals {
+ShowLine 110
+$display="TOTALS:"
+#LOOP (60 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%round(@Gear_Armour_Total_Deflect)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (65 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%round(@Gear_Armour_Total_Absorb)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (70 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%round(@Gear_Armour_Total_Weight)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (80 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%round(@Gear_Armour_Total_Capacity)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (85 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%round(@Gear_Armour_Total_DR)),4)
+#LOOP 5-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+
+#LOOP (90 - %len($display)) {$display=%concat($display," ")}
+
+$item = %left(%string(%format(1,%float(@Gear_Armour_Total_Score))),6)
+#LOOP 7-%len($item) {$item=%concat(" ",$item)}
+$display=%concat($display,$item)
+#ECHO $display
+ShowLine 110
+} $CLASS
+
+
+
+#CLASS 0
