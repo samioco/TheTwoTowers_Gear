@@ -1,0 +1,60 @@
+#CLASS 0
+$CLASS = "Tools|Gear|Settings"
+
+#TR Armour_Verbose {^Protecting%sArmour} {
+#FORALL @ArmourSlots {
+  #VAR %concat("My",%proper(%i)) {} {} VAR
+  #FORALL @ArmourStats {
+    #VAR %concat("My",%proper(%i),"_",%j) {} {} VAR
+  }
+}
+} $CLASS
+
+#TR ArmourSlots {^({@ArmourSlots})%s%2} {
+$armourSlot=%1
+$item=%lower(%2)
+$slot="";$deflect=0;$absorb=0;$weight=0;$dura=0
+#IF ($item!="Nothing") {Gear_LookUpArmour $item}
+Gear_AssignArmour
+#IF ($armourSlot="waist") {
+  #FORALL @ArmourSlots {
+    #IF (!@{%concat("My",%proper(%i))}) {#VAR %concat("My",%proper(%i)) {} {} VAR}
+  }
+}
+#VAR Mycontainers {} {} VAR
+#IF (@Gear_Pack) {#ADDI MyContainers "pack"}
+#IF (@Gear_Panniers) {#ADDI MyContainers "panniers"}
+#IF (@Gear_Saddlebags) {#ADDI MyContainers "saddlebags"}
+#IF (@Gear_Wagon) {#ADDI MyContainers @MyWagon}
+#IF (@Gear_PartyWagons) {#FORALL @Gear_PartyWagons {#ADDI MyContainers %i}}
+} $CLASS
+
+#TR Armour_Wear {You wear ({@Gear_ArmourNames})} {
+$item=%lower(%1)
+Gear_LookUpArmour $item
+Gear_AssignArmour
+} $CLASS
+
+#TR Armour_Worn {~*({@Gear_ArmourNames})*~(worn~)} {
+$item=%lower(%1)
+Gear_LookUpArmour $item
+Gear_AssignArmour
+} $CLASS
+
+#TR Armour_Remove {You remove ({@Gear_ArmourNames})} {
+$item=%lower(%1)
+Gear_LookUpArmour $item
+Gear_UnAssignArmour
+#IF (($item="a suit of chain link mail") && (%lower(@MyHead)="a chain link coif")) {
+  Gear_LookUpArmour "a chain link coif"
+  Gear_UnAssignArmour
+}
+} $CLASS
+
+#TR ExquisiteCoifRemove {You lower the coif of your chainmail suit.} {
+$item="a fine steel coif"
+Gear_LookUpArmour $item
+Gear_UnAssignArmour
+} $CLASS
+
+#CLASS 0
