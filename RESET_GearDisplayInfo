@@ -1,0 +1,159 @@
+#CLASS 0
+$CLASS = "Tools|Gear|EXE"
+#AL MSTAT {
+SysMsg Mount: @Mount, Mounted: @Mounted, Hitched, @Hitched, Monstrous: @MonstrousWarg
+SysMsg Dismount: @Dismount, Hitched: @Hitched, ReinsPickup: @ReinsPickup, ReinsDrop: @ReinsDropped
+} $CLASS
+
+#AL ShowConts {
+$display=""
+$item=""
+$items=""
+#VAR MyContainers {} {} VAR
+$container_types = "wagon|panniers|saddlebags|pack|cloak|tornbag|peltstring"
+
+#FORALL $container_types {
+  $item=%proper(%i)
+  #IF (@{%concat("Gear_",$item)}) {
+    #IF (%len($items)) {$items=%concat($items," | ")}
+    #IF ($item="wagon") {
+      $items=%concat($items,%proper($item))
+      #ADDI MyContainers @MyWagon
+    } {
+      $items=%concat($items,%proper($item))
+      #ADDI MyContainers $item
+    }
+    #IF (@Gear_Packtag=$item) {$items=%concat($items," [packtag]")}
+  }
+}
+#IF (@Gear_PartyWagons) {#FORALL @Gear_PartyWagons {#ADDI MyContainers %i}}
+
+//Cut string at 10 chars
+$display="CONTAINERS"
+$display=%copy($display,1,10)
+//Add trailing spaces up to 10 chars
+#IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
+$display=%concat($display,": ",$items)
+#IF ($items) {SysMsg $display}
+} $CLASS
+
+#AL ShowHeal {
+$display=""
+$items=""
+$healing_items = "heal|epdag|epknife"
+#IF (@Gear_Heal) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,%proper(@Gear_Heal))}
+#IF (@Gear_EPDag) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"EPDag")}
+#IF (@Gear_EPKnife) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"EPKnife")}
+
+//Cut string at 10 chars
+$display="HEALING"
+$display=%copy($display,1,10)
+//Add trailing spaces up to 10 chars
+#IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
+$display=%concat($display,": ",$items)
+#IF ($items) {SysMsg $display}
+} $CLASS
+
+#AL ShowRings {
+$display=""
+$items=""
+#IF (@Gear_DarkRing) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"Dark")}
+#IF (@Gear_ShimmeringRing) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"Shimmering")}
+#IF (@Gear_ScoredRing) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"Scored")}
+#IF (@Gear_CobaltRing) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"Cobalt")}
+#IF (@Gear_RangerRing) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"Ranger")}
+//Cut string at 10 chars
+$display="RINGS"
+$display=%copy($display,1,10)
+//Add trailing spaces up to 10 chars
+#IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
+$display=%concat($display,": ",$items)
+#IF ($items) {SysMsg $display}
+} $CLASS
+
+#AL ShowDark {
+$display=""
+$items=""
+$dark_items="necklace|ring|cloak|pendant"
+#FORALL $dark_items {
+  #IF (@{%concat("Gear_Dark",%proper(%i))}) {
+    #IF (%len($items)) {$items=%concat($items, " | ")}
+    $items=%concat($items,%proper(%i))
+  }
+}
+
+//Cut string at 10 chars
+$display="DARKNESS"
+$display=%copy($display,1,10)
+//Add trailing spaces up to 10 chars
+#IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
+$display=%concat($display,": ",$items)
+#IF ($items) {SysMsg $display}
+} $CLASS
+
+#AL ShowBoosts {
+$display=""
+$items=""
+#IF (@Gear_WarHorn) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"WarHorn")}
+#IF (@Gear_PashaHorn) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"Pasha's Horn")}
+#IF (@Gear_Mixie) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"Mixie")}
+#IF (@Gear_BandsOfSlaying) {#IF (%len($items)) {$items=%concat($items, " | ")};$items=%concat($items,"Bands of Slaying")}
+//Cut string at 10 chars
+$display="BOOSTS"
+$display=%copy($display,1,10)
+//Add trailing spaces up to 10 chars
+#IF (%len($display)<=10) {#LOOP %len($display)+1,11 {$display=%concat($display," ")}}
+$display=%concat($display,": ",$items)
+#IF ($items) {SysMsg $display}
+} $CLASS
+
+
+#AL ShowItems {$line="";#LOOP 60 {$line=%concat($line,"-")};SysMsg {};SysMsg $line
+ShowBoosts
+ShowDark
+ShowRings
+ShowHeal
+showconts
+SysMsg $line
+} $CLASS
+
+//------------------------------------------------------------//
+
+$CLASS = "Tools|Gear|Settings"
+
+#TR GEAR_Hands {({@Messages_Hands})} {
+#SW (%ismember(%1,@Messages_Hands_Full)) {#VAR HandsFree {0} {} VAR
+} (%ismember(%1,@Messages_Hands_OneHand)) {#VAR HandsFree {1} {} VAR
+} (%ismember(%1,@Messages_Hands_Empty)) {#VAR HandsFree {2} {} VAR}
+} $CLASS
+
+#TR GEAR_Hands1 {You store * in {@aanthe |}{@Gear_Sheaths}.} {#ADD HandsFree -1} $CLASS
+
+#TR NumMeatPies {^{ |*}A {"large mixed|small"} meat pie ~((%d)~).} {
+#VAR MeatPies {%number(%1)} {} VAR
+INFO Meat pies: @MeatPies
+} $CLASS
+
+#TR NumJerky {^{"*| "}A piece of salted jerky ~((%d)~).} {
+#VAR Jerky {%number(%1)} {} VAR
+INFO Jerky: @Jerky
+} $CLASS
+
+#TR GEAR_WagonSpace {^Your %w {"wagon|cart|wain"} is %1.} {#VAR Gear_WagonSpace {%1} {} VAR;#CAP Info} $CLASS
+
+#TR GEAR_UniqueInContainer {You hesitate briefly before putting * inside.} {#CW high,bold,red;#ECHO DON'T BOX UNIQUES FOOL! YOU'RE GONNA LOSE THIS ITEM!} $CLASS
+
+#TR GEAR_PackTag {({@Messages_Packtag})(*)} {
+#CW high,white
+#CAP INFO
+#IF (%ismember(%1,@Messages_Packtag_Remove)) {
+  #VAR Gear_Packtag {} {} VAR
+} {
+  #SW (%pos("wagon",%2)) {
+    #VAR Gear_Packtag {"wagon"} {} VAR
+  } (%pos("panniers",%2)) {
+    #VAR Gear_Packtag {"panniers"} {} VAR}
+  }
+} $CLASS
+
+#CLASS 0
