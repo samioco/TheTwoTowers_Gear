@@ -1,0 +1,329 @@
+#CLASS 0
+
+#VAR GEAR_Weapons {} {} VAR
+
+//Uniques
+#ADDI GEAR_Weapons "A many-tailed whip|many-tailed whip|whip|1|95|100|75|5000"
+#ADDI GEAR_Weapons "Carack-amarth|carack|axe|2|94|93|80|9999"
+#ADDI GEAR_Weapons "Carack-amarth, the axe of doom|carack|axe|2|94|93|80|9999"
+#ADDI GEAR_Weapons "The captain's cutlass|captain's cutlass|sword|1|95|95|150|9750"
+#ADDI GEAR_Weapons "The Black Sword|black sword|sword|2|100|100|150|4000"
+#ADDI GEAR_Weapons "Vornmegil|black sword|sword|2|100|100|150|4000"
+#ADDI GEAR_Weapons "The shadow sword|shadow sword|sword|2|95|95|80|5000"
+#ADDI GEAR_Weapons "shadow sword|shadow sword|sword|2|95|95|80|5000"
+#ADDI GEAR_Weapons "A jade trident|trident|trident|2|95|95|80|6900"
+#ADDI GEAR_Weapons "A great elven war-bow|elven bow|bow|2|95|95||0"
+#ADDI GEAR_Weapons "The Heartbreaker|heartbreaker|dagger|1||||"
+#ADDI GEAR_Weapons "The Globe of Protection|globe|globe|1|85|90|3|500"
+#ADDI GEAR_Weapons "dragontooth axe|dragontooth|axe|1|95|95|80|9999"
+#ADDI GEAR_Weapons "The dragontooth axe|dragontooth|axe|1|95|95|80|9999"
+#ADDI GEAR_Weapons "Gorynytch|gorynytch|sword|1|90|90|80|9999"
+#ADDI GEAR_Weapons "A Gorynytch|gorynytch|sword|1|90|90|80|9999"
+#ADDI GEAR_Weapons "Gorynytch, the dragon sword|gorynytch|sword|1|90|90|80|9999"
+#ADDI GEAR_Weapons "A Gorynytch, the dragon sword|gorynytch|sword|1|90|90|80|9999"
+#ADDI GEAR_Weapons "The storm longbow|storm bow|bow|2|100|90||0"
+#ADDI GEAR_Weapons "A wicked looking flail|wicked flail|flail|1|95|95|200|6500"
+#ADDI GEAR_Weapons "A gleaming runed blade|gleaming blade|sword|2|95|90|180|5000"
+#ADDI GEAR_Weapons "A dark scimitar|dark scimitar|scimitar|1|100|95|90|5000"
+
+//Axes
+//#ADDI GEAR_Weapons "axe|axe|axe|1||||"
+#ADDI GEAR_Weapons "An axe|axe|axe|1|0|0|0|0"
+#ADDI GEAR_Weapons "A spiked axe|spiked axe|axe|2|90|90|300|8000"
+#ADDI GEAR_Weapons "A spiked steel axe of Gondor|spiked axe|axe|2|90|90|300|8000"
+#ADDI GEAR_Weapons "A double-bladed axe|double bladed axe|axe|2|92|92|240|4000"
+#ADDI GEAR_Weapons "A mighty axe of the tusk|mighty axe|axe|2|92|92|240|4000"
+#ADDI GEAR_Weapons "A dark runed battle axe|runed axe|axe|1|75|75|225|4800"
+#ADDI GEAR_Weapons "A runed axe|runed axe|axe|1|75|75|225|4800"
+#ADDI GEAR_Weapons "A very powerful-looking axe|powerful axe|axe|1|73|69|220|2000"
+#ADDI GEAR_Weapons "A mighty steel waraxe|waraxe|axe|1|90|97|236|4719"
+#ADDI GEAR_Weapons "A steel waraxe|waraxe|axe|1|90|97|236|4719"
+#ADDI GEAR_Weapons "A haradrim great axe|haradrim axe|axe|2|45|45|300|2000"
+#ADDI GEAR_Weapons "A great iron axe|great iron axe|axe|1|45|45|225|4250"
+#ADDI GEAR_Weapons "A sturdy axe|sturdy axe|axe|1|55|55|180|3000"
+#ADDI GEAR_Weapons "A serrated battle axe|serrated axe|axe|1|60|60|250|3750"
+#ADDI GEAR_Weapons "A small battle-axe|battle-axe|axe|1|25|35|129|900"
+#ADDI GEAR_Weapons "A one-handed dwarven battle axe|dwarven battle axe|axe|1|40|60|100|1875"
+#ADDI GEAR_Weapons "A heavy battleaxe|battleaxe|axe|1|40|60|160|700"
+#ADDI GEAR_Weapons "An ancient one handed battle axe|ancient axe|axe|1|65|70|200|5000"
+#ADDI GEAR_Weapons "A battle axe|ancient axe|axe|1|65|70|200|5000"
+
+
+//Bows
+#ADDI GEAR_Weapons "A magnificent longbow|magnificent longbow|bow|2|92|92|100|6000"
+#ADDI GEAR_Weapons "A malicious black longbow|malicious longbow|bow|2|92|92|100|6000"
+#ADDI GEAR_Weapons "A carven recurve ivory bow|ivory bow|bow|2|85|85|100|0"
+#ADDI GEAR_Weapons "An ancient war longbow|ancient bow|bow|2|92|88|90|1000"
+#ADDI GEAR_Weapons "A dark crimson longbow|crimson bow|bow|2|90|90|100|1000"
+#ADDI GEAR_Weapons "A longbow made from yew|yew bow|bow|2|85|90|80|400"
+#ADDI GEAR_Weapons "An elven bow|elven bow|bow|2|64|42||"
+#ADDI GEAR_Weapons "A crudely-made bow|crudely bow|bow|2|10|40|80|400"
+#ADDI GEAR_Weapons "A jewel-encrusted silver bow|silver bow|bow|2|85|85|80|900"
+#ADDI GEAR_Weapons "A fearsome-looking longbow|fearsome bow|bow|2|90|90|100|1500"
+#ADDI GEAR_Weapons "A reinforced great war bow|reinforced bow|bow|2|80|95|140|5000"
+#ADDI GEAR_Weapons "A graceful silvery composite bow|silvery bow|bow|2|60|60|75|900"
+#ADDI GEAR_Weapons "A dark sinister hornbow|sinister bow|bow|2|60|60|75|900"
+#ADDI GEAR_Weapons "A magnificent yew recurve bow|yew bow|bow|2|60|60|75|900"
+
+//Flails & Maces & Hammers
+#ADDI GEAR_Weapons "A great spiked flail|spiked flail|flail|1|90|90|180|5000"
+#ADDI GEAR_Weapons "A numenorean mace|numenorean mace|mace|2|92|92|240|4000"
+#ADDI GEAR_Weapons "A steel numenorean mace|numenorean mace|mace|2|92|92|240|4000"
+#ADDI GEAR_Weapons "A dwarven warhammer|warhammer|hammer|1|90|90|100|4000"
+#ADDI GEAR_Weapons "A blackened warhammer|warhammer|hammer|1|60|65|90|2500"
+#ADDI GEAR_Weapons "A massive warsledge|sledge|hammer|2|17|24|150|850"
+#ADDI GEAR_Weapons "A large steel mallet|steel mallet|hammer|1|30|75|200|2000"
+#ADDI GEAR_Weapons "A black spiked mace|black spiked mace|mace|1|45|45|150|4000"
+#ADDI GEAR_Weapons "A great two-handed flail|great two-handed flail|flail|2|25|85|150|1400"
+#ADDI GEAR_Weapons "great two-handed flail|great two-handed flail|flail|2|25|85|150|1400"
+#ADDI GEAR_Weapons "A rusty Morgul flail|Morgul flail|flail|1|70|70|150|3750"
+#ADDI GEAR_Weapons "A menacing spiked mace|menacing mace|mace|1|70|70|120|1000"
+#ADDI GEAR_Weapons "A well-balanced hammer|beorning hammer|hammer|1|55|60|100|2700"
+#ADDI GEAR_Weapons "A beorning hammer|beorning hammer|hammer|1|55|60|100|2700"
+
+//Staves
+//#ADDI Gear_Weapons "A walking staff|walking staff|staff|1|0|0|25|0"
+#ADDI GEAR_Weapons "Miluiant|miluiant|staff|2|95|90|250|7058"
+#ADDI GEAR_Weapons "Celeir miluiant|miluiant|staff|2|95|90|250|7058"
+#ADDI GEAR_Weapons "A bladed staff|bladed staff|staff|2|90|90|100|6438"
+#ADDI GEAR_Weapons "A double-bladed staff|bladed staff|staff|2|90|90|100|6438"
+#ADDI GEAR_Weapons "A warrior's staff|training staff|staff|1|60|65|50|3400"
+#ADDI GEAR_Weapons "A training staff|training staff|staff|1|60|65|50|3400"
+#ADDI GEAR_Weapons "A wooden training staff|training staff|staff|1|60|65|50|3400"
+#ADDI GEAR_Weapons "A hard wooden training staff|training staff|staff|1|60|65|50|3400"
+#ADDI GEAR_Weapons "A wooden staff with a blade on each end|training staff|staff|2|73|91|50|3400"
+#ADDI GEAR_Weapons "A staff of the eye|staff of the eye|staff|1|90|98|100|5984"
+#ADDI GEAR_Weapons "A staff of the Eye|staff of the eye|staff|1|90|98|100|5984"
+#ADDI GEAR_Weapons "The ice staff of Ulkhalad|ice staff|staff|1|76|74|95|4000"
+#ADDI GEAR_Weapons "isufiel|ice staff|staff|1|76|74|95|4000"
+#ADDI GEAR_Weapons "A jet black rod|rod|staff|1|70|70|65|300"
+#ADDI GEAR_Weapons "A jet black staff|jet black staff|staff|2|60|65|25|4200"
+#ADDI GEAR_Weapons "A serpent staff|serpent staff|staff|1|85|86|220|5000"
+#ADDI GEAR_Weapons "An ominous rod of the ocean|rod|staff|1|92|92|80|5000"
+#ADDI GEAR_Weapons "A lustrous rod of the ocean|rod|staff|1|92|92|80|5000"
+#ADDI GEAR_Weapons "An old black staff|old black staff|staff|1|35|25|60|200"
+#ADDI GEAR_Weapons "An old glowing staff|old glowing staff|staff|1|30|30|35|1500"
+#ADDI GEAR_Weapons "A shiny black staff|shiny black staff|staff|1|60|57|91|3000"
+#ADDI GEAR_Weapons "A hideously warped staff|hideous staff|staff|1|40|50|130|2000"
+#ADDI GEAR_Weapons "A white staff|white staff|staff|1|5|5|25|1000"
+#ADDI GEAR_Weapons "A dragon staff|dragon staff|staff|1|65|65|50|6000"
+#ADDI GEAR_Weapons "Runya|dragon staff|staff|1|65|65|50|6000"
+#ADDI GEAR_Weapons "A steel-tipped staff|steel-tipped staff|staff|1|55|55|50|2700"
+#ADDI GEAR_Weapons "A sword fashioned from a staff|staff|staff|1|60|60|200|3690"
+#ADDI GEAR_Weapons "An enchanted black staff|enchanted staff|staff|1|60|53|100|4000"
+#ADDI GEAR_Weapons "An ancient runed staff|ancient staff|staff|1|37|45|60|2500"
+#ADDI GEAR_Weapons "A grey staff|grey staff|staff|1|5|6|50|200"
+
+//Swords
+#ADDI GEAR_Weapons "A sailor's cutlass|sailor's cutlass|sword|1|85|86|175|4200"
+#ADDI GEAR_Weapons "A dark iron scimitar|dark iron scimitar|scimitar|1|45|40|90|4000"
+#ADDI GEAR_Weapons "Morimacil|morimacil|sword|2|90|90|100|3500"
+#ADDI GEAR_Weapons "Morimacil, the dark sword|morimacil|sword|2|90|90|100|3500"
+#ADDI GEAR_Weapons "The steward's long sword|stewards longsword|sword|2|90|90|120|5000"
+#ADDI GEAR_Weapons "A steward's long sword|stewards longsword|sword|2|90|90|120|5000"
+#ADDI GEAR_Weapons "A beautiful, deadly sword forged by|forged sword|sword|1|95|95|85|9900"
+#ADDI GEAR_Weapons "A forged sword|forged sword|sword|1|95|95|85|9900"
+#ADDI GEAR_Weapons "Kilgorin, the ice blade of ulklavik|kilgorin|sword|1|80|80|100|5000"
+#ADDI GEAR_Weapons "A kilgorin|kilgorin|sword|1|80|80|100|5000"
+#ADDI GEAR_Weapons "A great bone-handled flamberge|flamberge|sword|2|86|93|350|6300"
+#ADDI GEAR_Weapons "An intimidating dark longsword|intimidating sword|sword|1|90|95|120|7500"
+#ADDI GEAR_Weapons "A pale longsword|pale longsword|sword|1|90|90|110|6000"
+#ADDI GEAR_Weapons "An ancient lustrous longsword|lustrous sword|sword|1|90|95|150|8000"
+#ADDI GEAR_Weapons "A pulsing lustrous longsword|lustrous sword|sword|1|90|95|150|8000"
+#ADDI GEAR_Weapons "The serpent's tongue|tongue|sword|1|50|50|60|1500"
+#ADDI GEAR_Weapons "A sharp sabre|sharp sabre|sword|1|30|30|60|888"
+#ADDI GEAR_Weapons "The bone sword|bone sword|sword|1|90|95|150|5750"
+#ADDI GEAR_Weapons "A magnificent engraved longsword|magnificent engraved longsword|sword|1|95|95|120|5000"
+//#ADDI GEAR_Weapons "A Dol Amroth knight's sword|knight sword|sword|1|100|95|150|5000"
+#ADDI GEAR_Weapons "A dol amroth knight's sword|knight sword|sword|1|100|95|150|5000"
+#ADDI GEAR_Weapons "Dol amroth knight's sword|knight sword|sword|1|100|95|150|5000"
+#ADDI GEAR_Weapons "An ancient mithril long sword|mithril longsword|sword|1|100|100|150|6000"
+#ADDI GEAR_Weapons "A blazing runed longsword|blazing longsword|sword|1|90|95|160|8000"
+#ADDI GEAR_Weapons "A crimson longsword|crimson sword|sword|1|89|92|200|3000"
+#ADDI GEAR_Weapons "An executioner's sword|executioner's sword|sword|1|89|92|200|6000"
+#ADDI GEAR_Weapons "A long haradrim bone sword|haradrim bone sword|sword|1|90|90|120|6500"
+#ADDI GEAR_Weapons "A magnificent longsword|magnificent longsword|sword|1|85|90|200|1000"
+#ADDI GEAR_Weapons "A flaming longsword|flaming longsword|sword|1|85|90|200|1000"
+#ADDI GEAR_Weapons "Herugrim|herugrim|sword|1|90|90|200|5000"
+#ADDI GEAR_Weapons "Guthwine|guthwine|sword|1|82|82|200|3900"
+#ADDI GEAR_Weapons "A crooked runed sword|crooked runed sword|sword|1|75|85|100|3000"
+#ADDI GEAR_Weapons "An orc short sword|orc short sword|sword|1|80|80|75|3500"
+#ADDI GEAR_Weapons "A dark steel longsword|dark longsword|sword|1|82|85|90|6000"
+#ADDI GEAR_Weapons "A black steel longsword|black steel longsword|sword|1|80|95|180|6850"
+#ADDI GEAR_Weapons "An ancient short sword|ancient short sword|sword|1|76|86|86|4300"
+#ADDI GEAR_Weapons "An ancient silver blade|ancient silver blade|sword|1|88|80|125|5000"
+#ADDI GEAR_Weapons "An ancient blade|ancient silver blade|sword|1|88|80|125|5000"
+#ADDI GEAR_Weapons "The Silent Slayer|silent slayer|sword|1|65|93|90|3500"
+#ADDI GEAR_Weapons "Orcrist, the Goblin-cleaver|orcrist|sword|1|90|90|75|9999"
+#ADDI GEAR_Weapons "Kirhelek|kirhelek|sword|1|85|80|200|3000"
+#ADDI GEAR_Weapons "Kirhelek, the blade of maegon|kirhelek|sword|1|85|80|200|3000"
+#ADDI GEAR_Weapons "The Captain's sword|captain's sword|sword|1|70|80|150|2000"
+#ADDI GEAR_Weapons "An orc courier sword|courier sword|sword|1|78|79|60|3141"
+#ADDI GEAR_Weapons "A beautiful longsword of elven make|elven longsword|sword|1|60|60|225|6000"
+#ADDI GEAR_Weapons "An archaic longsword|archaic longsword|sword|1|60|60|175|5925"
+#ADDI GEAR_Weapons "A powerful bastard sword|bastard sword|sword|2|40|60|300|2000"
+#ADDI GEAR_Weapons "A huge two-handed sword|huge sword|sword|2|95|100|200|3800|-30 Dodge"
+#ADDI GEAR_Weapons "An intricate short sword|short sword|sword|1|35|40|60|1500"
+#ADDI GEAR_Weapons "A rapier|rapier|sword|1|0|0|0|0"
+#ADDI GEAR_Weapons "A long steel rapier|long rapier|sword|1|40|30|100|1500"
+#ADDI GEAR_Weapons "A bright iron longsword|iron sword|sword|1|40|45|156|2100"
+#ADDI GEAR_Weapons "A small fancy sword|fancy sword|sword|1|10|25|30|800"
+#ADDI GEAR_Weapons "A dark-bladed rapier|dark rapier|sword|1|50|50|100|2000"
+#ADDI GEAR_Weapons "A dark rapier|dark rapier|sword|1|50|50|100|2000"
+#ADDI GEAR_Weapons "A cruel notched longsword|cruel longsword|sword|1|50|50|130|4000"
+#ADDI GEAR_Weapons "A pointy iron sword|pointy sword|sword|1|35|40|70|800"
+#ADDI GEAR_Weapons "A gleaming greatsword|greatsword|sword|1|36|36|200|1600"
+#ADDI GEAR_Weapons "A short steel sword|steel sword|sword|1|55|50|75|2000"
+#ADDI GEAR_Weapons "A strange grey sword|grey sword|sword|1|85|87|70|3200"
+#ADDI GEAR_Weapons "A bunished saber|burnished saber|sword|1|62|60|90|4900"
+#ADDI GEAR_Weapons "A guarded rapier|guarded rapier|sword|1|68|59|140|1650"
+#ADDI GEAR_Weapons "A shining longsword|shining longsword|sword|1|58|58|110|3000"
+#ADDI GEAR_Weapons "A deadly claymore|deadly claymore|sword|1|55|60|200|2500"
+#ADDI GEAR_Weapons "An elegant steel longsword|elegant sword|sword|1|60|60|75|4375"
+#ADDI GEAR_Weapons "An elegant longsword|elegant sword|sword|1|60|60|75|4375"
+#ADDI GEAR_Weapons "A steel rapier|steel rapier|sword|1|60|60|80|1500"
+#ADDI GEAR_Weapons "A sharp, serrated blade|serrated blade|sword|1|85|40|60|8500"
+#ADDI GEAR_Weapons "A shining steel longsword|shining longsword|sword|1|58|58|110|3000"
+#ADDI GEAR_Weapons "A captain's blade|captain's blade|sword|1|75|70|100|2000"
+#ADDI GEAR_Weapons "A runed blade|runed longsword|sword|1H|80|85|70|3500"
+#ADDI GEAR_Weapons "A well-balanced short sword|balanced short sword|sword|1|25|25|43|1200"
+#ADDI GEAR_Weapons "A sindarin sword|sindarin sword|sword|1|25|25|80|1350"
+#ADDI GEAR_Weapons "A rusty westernesse sword|westernesse sword|sword|1|17|23|73|888"
+#ADDI GEAR_Weapons "An adventurer's sword|adventurer's sword|sword|1|15|25|50|750"
+#ADDI GEAR_Weapons "A shiny old sword|shiny sword|sword|1|20|22|80|1000"
+#ADDI GEAR_Weapons "A glittering short sword|glittering sword|sword|1|34|35|300|5"
+#ADDI GEAR_Weapons "A nasty looking sword|sword|sword|1|16|14|50|800"
+#ADDI GEAR_Weapons "A huge claymore|claymore|sword|2|58|72|300|2600"
+#ADDI GEAR_Weapons "A claymore|claymore|sword|2|58|72|300|2600"
+#ADDI GEAR_Weapons "An elven short sword|elven short sword|sword|1|40|65|100|1000"
+#ADDI GEAR_Weapons "A sharp longsword|sharp longsword|sword|1|40|35|78|2000"
+#ADDI GEAR_Weapons "A shiny, black longsword|shiny sword|sword|1|80|70|120|1000"
+#ADDI GEAR_Weapons "A bright keen blade|keen blade|sword|1|52|51|100|3300"
+#ADDI GEAR_Weapons "A plain sailor's cutlass|plain cutlass|sword|1|30|30|200|800"
+#ADDI GEAR_Weapons "A leather-hilted sword|leather sword|sword|1|52|50|150|2500"
+#ADDI GEAR_Weapons "An executioner's scimitar|scimitar|sword|2|78|88|215|4640"
+#ADDI GEAR_Weapons "A deadly smallsword|smallsword|sword|1|85|55|100|2000"
+#ADDI GEAR_Weapons "A gleaming sword|gleaming sword|sword|1|65|70|120|3000"
+#ADDI GEAR_Weapons "A well polished longsword|polished longsword|sword|1|50|50|120|1100"
+#ADDI GEAR_Weapons "A heavy stone sword|stone sword|sword|2|55|85|300|1100"
+#ADDI GEAR_Weapons "A sword of brilliance|sword of brilliance|sword|1|70|70|100|4000"
+
+//Spears
+#ADDI GEAR_Weapons "Aiglos|aiglos|spear|1|100|95|75|9999"
+#ADDI GEAR_Weapons "Aiglos, icicle of gil-galad|aiglos|spear|1|100|95|75|9999"
+#ADDI GEAR_Weapons "A powerful-looking rider's spear|rider's spear|spear|1|82|82|86|6000"
+#ADDI GEAR_Weapons "A magnificent rider's spear|rider's spear|spear|1|89|89|86|6000"
+#ADDI GEAR_Weapons "A gruesome war-pike|pike|pike|2|91|89|456|3756"
+#ADDI GEAR_Weapons "A 'man-catcher' pole-arm|polearm|pole|2|90|90|80|5000"
+#ADDI GEAR_Weapons "A man-catcher|polearm|pole|2|90|90|80|5000"
+#ADDI GEAR_Weapons "A spear|spear|spear|1||||"
+#ADDI GEAR_Weapons "An elegant steel-tipped spear|elegant spear|spear|1|95|95|120|5000"
+#ADDI GEAR_Weapons "A deadly dark spear|dark spear|spear|1|85|82|150|5500"
+#ADDI GEAR_Weapons "A prism spear|prism spear|spear|1|50|50|90|3000"
+#ADDI GEAR_Weapons "A devAStating double voulge|double voulge|voulge|80|90|450|5500"
+#ADDI GEAR_Weapons "A double voulge|double voulge|voulge|2|80|90|450|5500"
+#ADDI GEAR_Weapons "A long metal-shod spear|metal spear|spear|1|40|20|80|600"
+#ADDI GEAR_Weapons "The spear of the hunter|spear|spear|1|50|50|90|2500"
+#ADDI GEAR_Weapons "A long lance|long lance|lance|1|50|60|100|2000"
+#ADDI GEAR_Weapons "The death lance|death lance|lance|1|30|30|100|3000"
+#ADDI GEAR_Weapons "A silver lance|silver lance|lance|1|65|88|600|4000"
+
+//Whips
+#ADDI GEAR_Weapons "An intimidating black whip|black whip|whip|1|25|30|75|1250"
+#ADDI GEAR_Weapons "A vicious-looking whip|vicious-looking whip|whip|1|95|95|100|5277"
+#ADDI GEAR_Weapons "A nasty leather whip|nasty whip|whip|1|60|60|100|5000"
+#ADDI GEAR_Weapons "A vicious cat o' nine tails|tails|whip|1|45|55|100|2000"
+#ADDI GEAR_Weapons "A cat-o'-nine-tails|whip|whip|1|15|8|94|750"
+#ADDI GEAR_Weapons "The whipmaster's whip|whipmaster's whip|whip|1|45|50|25|45"
+
+
+//Daggers
+#ADDI GEAR_Weapons "The twilight dagger|twilight dagger|dagger|1|70|70|50|2000"
+#ADDI GEAR_Weapons "A harad stiletto|harad stiletto||1|95|70|65|4000"
+#ADDI GEAR_Weapons "The 'swordbreaker' dagger|swordbreaker|dagger|1|75|75|80|8000"
+#ADDI GEAR_Weapons "A runed dagger of gondolin|runed dagger|dagger|1|75|69|99|2000"
+#ADDI GEAR_Weapons "A simple dagger|simple dagger|dagger|1|100|67|60|1500"
+#ADDI GEAR_Weapons "A black dagger|average-sized dagger|dagger|10|10|6|200"
+#ADDI GEAR_Weapons "A dragon dagger|dragon dagger|dagger|1|45|60|35|1300"
+#ADDI GEAR_Weapons "A diamond-edged dagger|dagger|dagger|1|35|35|80|2000"
+#ADDI GEAR_Weapons "A well-made dagger|dagger|dagger|1|20|30|75|500"
+#ADDI GEAR_Weapons "A black runed dagger|black runed dagger|dagger|1|100|90|80|3000"
+#ADDI GEAR_Weapons "A blued dagger|blued dagger|dagger|1|50|50|50|2000"
+#ADDI GEAR_Weapons "A nicely curved dagger|curved dagger|dagger|1|60|60|50|2700"
+#ADDI GEAR_Weapons "A curved, black dagger|curved black dagger|dagger|1|60|60|70|3200"
+#ADDI GEAR_Weapons "An obsidian dagger|obsidian dagger|dagger|1|50|60|50|1500"
+#ADDI GEAR_Weapons "A twisted dagger|twisted dagger|dagger|1|65|42|40|2500"
+#ADDI GEAR_Weapons "A tarnished steel dagger|tarnished steel dagger|dagger|1|65|60|48|1600"
+#ADDI GEAR_Weapons "A jet black dagger|jet black dagger|dagger|1|27|31|33|1250"
+#ADDI GEAR_Weapons "A black dagger|average-sized dagger|dagger|1|10|10|6|200"
+#ADDI GEAR_Weapons "A dagger of death|dagger of death|dagger|1|21|20|50|800"
+#ADDI GEAR_Weapons "A deadly dagger|deadly dagger|dagger|1|56|58|40|850"
+#ADDI GEAR_Weapons "The 'swordbreaker' dagger|swordbreaker|dagger|1|75|75|80|8000"
+#ADDI GEAR_Weapons "A finely-crafted dagger|crafted dagger|dagger|1|10|15|40|500"
+
+//Knives
+#ADDI GEAR_Weapons "A small rune covered knife|runed knife|knife|1|70|70|50|3000"
+#ADDI GEAR_Weapons "A wickedly curved knife|curved knife|knife|1|30|20|25|400"
+#ADDI GEAR_Weapons "A long hunter's knife|long knife|knife|1|50|30|20|900"
+#ADDI GEAR_Weapons "A sharp carving knife|carving knife|knife|1|5|5|18|100"
+#ADDI GEAR_Weapons "An elven knife|elven knife|knife|1|35|20|35|1000"
+
+//Misc
+#ADDI GEAR_Weapons "A large training prod|prod|prod|1|89|91|50|4500"
+#ADDI GEAR_Weapons "An oliphaunt tusk|tusk|tusk|1|85|80|200|3500"
+#ADDI GEAR_Weapons "A haradrim royal ankus|ankus|ankus|1|90|75|200|5000"
+#ADDI GEAR_Weapons "A big razor-sharp meat cleaver|cleaver|cleaver|95|95|300|4000"
+#ADDI GEAR_Weapons "A sky-rending halberd|halberd|halberd|2|65|70|300|3250"
+#ADDI GEAR_Weapons "a halberd's shaft sticking out|halberd|halberd|2|65|70|300|3250"
+#ADDI GEAR_Weapons "A sharp, spiked hook|hook|hook|1|45|30|70|1700"
+#ADDI GEAR_Weapons "A serpent's fang|fang|fang|1|15|15|3|100"
+#ADDI GEAR_Weapons "A gold-embroidered tusk|gold tusk|tusk|2|55|55|220|4500"
+#ADDI GEAR_Weapons "A heavy bludgeon|bludgeon|bludgeon|1|45|60|200|2570"
+#ADDI GEAR_Weapons "A sparkling halberd|sparkling halberd|halberd|2|30|30|100|3000"
+#ADDI GEAR_Weapons "A halberd|halberd|halberd|2|0|0|0|0"
+#ADDI GEAR_Weapons "A sharp spike of metal|metal spike|spike|1|40|53|10|300"
+
+
+#VAR Gear_WeaponNames {} {} VAR
+#FORALL @Gear_Weapons {#ADDI Gear_WeaponNames %lower(%item(%i,1))}
+
+#VAR Gear_Axes {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="axe") {#ADDI Gear_Axes %item(%i,1)}}
+
+#VAR Gear_Swords {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="sword") {#ADDI Gear_Swords %item(%i,1)}}
+
+#VAR Gear_Scimitars {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="scimitar") {#ADDI Gear_Scimitars %item(%i,1)}}
+
+#VAR Gear_Staves {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="staff") {#ADDI Gear_Staves %item(%i,1)}}
+
+#VAR Gear_Spear {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="spear") {#ADDI Gear_Spear %item(%i,1)}}
+
+#VAR Gear_Daggers {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="dagger") {#ADDI Gear_Daggers %item(%i,1)}}
+
+#VAR Gear_Knives {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="knife") {#ADDI Gear_Knives %item(%i,1)}}
+
+#VAR Gear_Bows {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="bow") {#ADDI Gear_Bows %item(%i,1)}}
+
+#VAR Gear_Maces {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="mace") {#ADDI Gear_Maces %item(%i,1)}}
+
+#VAR Gear_Flails {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="flail") {#ADDI Gear_Flails %item(%i,1)}}
+
+#VAR Gear_Hammer {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="hammer") {#ADDI Gear_Hammer %item(%i,1)}}
+
+#VAR Gear_Spear {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="spear") {#ADDI Gear_Spear %item(%i,1)}}
+
+#VAR Gear_Whips {} {} VAR
+#FORALL @Gear_Weapons {#IF (%item(%i,3)="whip") {#ADDI Gear_Whips %item(%i,1)}}
+
+#CLASS 0
