@@ -1,0 +1,18 @@
+#CLASS 0
+RESET_GearDBArmour
+RESET_GearDBWeapons
+RESET_GearDBConsumables
+RESET_GearDBHints
+DeclareGearVariables
+RESET_GearVariables
+RESET_GearDisplayArmour
+RESET_GearDisplayWeapons
+RESET_GearDisplayInfo
+RESET_GearEXE
+RESET_GearMounts
+RESET_GearWeaponsEXE
+RESET_GearArmourEXE
+RESET_GearArmourSettings
+RESET_GearWeaponsSettings
+RESET_GearAccessorySettings
+#CLASS 0
